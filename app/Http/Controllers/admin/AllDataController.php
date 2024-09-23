@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\admin;
 use Illuminate\Support\Facades\Auth;
 use App\Models\slider;
-use App\Models\order;
+use App\Models\product;
 use App\Models\about;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -16,7 +16,7 @@ class AllDataController
     } 
 
     public function search(Request $req){
-        $data = order::where('name','like','%' .$req->input('query').'%')->get();
+        $data = product::where('name','like','%' .$req->input('query').'%')->get();
          return view('admin.search',['products' => $data]);
      }
  
@@ -110,7 +110,7 @@ class AllDataController
 public function orderIndex(){
 
     $userid = Auth::id();
-    $orders = order::where('user_id',$userid)->with('user')->get();
+    $orders = product::where('user_id',$userid)->with('user')->get();
     return view('admin.OrderSave',compact('orders'));
 }
 /*****************************************************************************************************/
@@ -120,7 +120,7 @@ public function StoreOrder(Request $req){
         'price' => 'required',
         'image' => 'required|mimes:jpg,png,jpeg,webp'
     ]);
-    $order = new order;
+    $order = new product;
     $userid = Auth::id();
     $order->name = $req->name;
     $order->price = $req->price;
@@ -138,7 +138,7 @@ public function StoreOrder(Request $req){
 }
 /*****************************************************************************************************/
 public function showUpdateOrderPage(string $id){
-    $updateOrders = order::find($id);
+    $updateOrders = product::find($id);
     return view('admin.OrderEditPage',compact('updateOrders'));
 }
 /*****************************************************************************************************/
@@ -149,7 +149,7 @@ public function UpdateOrder(Request $req, string $id){
         'image' => 'mimes:jpg,png,jpeg,webp'
     ]);
 
-    $order = order::find($id);
+    $order = product::find($id);
     $order->name = $req->name;
     $order->price = $req->price;
     if($req->hasfile('image')){
@@ -168,7 +168,7 @@ public function UpdateOrder(Request $req, string $id){
 }
 /*****************************************************************************************************/
 public function deleteOrder(string $id){
-    $deleteOrder = order::find($id);
+    $deleteOrder = product::find($id);
     $image_path = public_path('Products/'.$deleteOrder->image);
     if(File_exists($image_path)){
         unlink($image_path);

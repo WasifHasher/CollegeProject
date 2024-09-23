@@ -23,13 +23,17 @@ class User extends Authenticatable
    }
 
    // Below Relationship I make for the order page. OnetoMany Relationship
-   public function order(){
-    return $this->hasMany(order::class);
+   public function product(){
+    return $this->hasMany(product::class);
    }
    
    // Below Relationship I make for the order page. OnetoMany Relationship
    public function slider(){
     return $this->hasMany(slider::class);
+   }
+
+   public function cart(){
+    return $this->hasMany(cart::class);
    }
   
   

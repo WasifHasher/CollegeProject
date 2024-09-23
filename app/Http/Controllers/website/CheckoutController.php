@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\website;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\cart;
+use App\Models\order;
 use Config;
 class CheckoutController
 {
     public function showPaymentPage(){
-        $products = cart::get();
+        $userid = Auth::id();
+        $products = cart::where('user_id',$userid)->get();
         return view('Checkout',compact('products'));
     }
+    
 
     public function Docheckout(Request $request){
 
@@ -21,10 +25,16 @@ class CheckoutController
         // echo "</pre>";
 
 
-        $id = $data['id'];
-        $product = order::where('id','=',$id)->get();
+        // $id = $data['id'];
+        // $product = order::where('id','=',$id)->get();
 
-        $temp_amount = $product[0]->price*100;
+        
+        
+
+        $storePrice =Session::get('total');
+
+                       // $product[0]->price*100;
+        $temp_amount = $storePrice;
         $amount_array = explode('.',$temp_amount);
         $pp_amount = $amount_array[0];
 
@@ -41,28 +51,30 @@ class CheckoutController
 
 
         $post_data = array(
-            "pp_Version"                   => Config::get('constants.jazzcash.VERSION'),
-            "pp_TxnType"                   => "MWALLET",
-            "pp_Language"                  => Config::get('constants.jazzcash.LANGUAGE'),
-            "pp_MerchantID"                => Config::get('constants.jazzcash.MERCHANT_ID'),
-            "pp_SubMerchantID"             => "",
-            "pp_Password"                  => Config::get('constants.jazzcash.PASSWORD'),
-            "pp_BankID"                    => "TBANK",
-            "pp_ProductID"                 => "RETL",
-            "pp_TxnRefNo"                  => $pp_TxnRefNo,
-            "pp_Amount"                    => $pp_amount,
-            "pp_TxnCurrency"               => Config::get('constants.jazzcash.CURRENCY_CODE'),
-            "pp_TxnDateTime"               => $pp_TxnDateTime,
-            "pp_BillReference"             => "billRef",
-            "pp_Description"               => "Description of transaction",
-            "pp_TxnExpiryDateTime"         => $pp_TxnExpiryDateTime,
-            "pp_ReturnURL"                 => Config::get('constants.jazzcash.RETURN_URL'),
-            "pp_SecureHash" =>             "",
-            "ppmpf_1"                      => "",
-            "ppmpf_2"                      => "",
-            "ppmpf_3"                      => "",
-            "ppmpf_4"                      => "",
-            "ppmpf_5"                      => ""
+            
+                "pp_Version"                  => Config::get('constants.jazzcash.VERSION'),
+                "pp_TxnType"                  => "MWALLET",
+                "pp_Language"                 => Config::get('constants.jazzcash.LANGUAGE'),
+                "pp_MerchantID"               => Config::get('constants.jazzcash.MERCHANT_ID'),
+                "pp_SubMerchantID"            => "",
+                "pp_Password"                 => Config::get('constants.jazzcash.PASSWORD'),
+                "pp_BankID"                   => "TBANK",
+                "pp_ProductID"                => "RETL",
+                "pp_TxnRefNo"                 => $pp_TxnRefNo,
+                "pp_Amount"                   => $pp_amount,
+                "pp_TxnCurrency"              => Config::get('constants.jazzcash.CURRENCY_CODE'),
+                "pp_TxnDateTime"              => $pp_TxnDateTime,
+                "pp_BillReference"            => "billRef",
+                "pp_Description"              => "Description of transaction",
+                "pp_TxnExpiryDateTime"        => $pp_TxnExpiryDateTime,
+                "pp_ReturnURL"                => '',
+                "pp_SecureHash"               =>"",
+                "ppmpf_1"                     => "",
+                "ppmpf_2"                     => "",
+                "ppmpf_3"                     => "",
+                "ppmpf_4"                     => "",
+                "ppmpf_5"                     => ""
+           
         );
 
         $pp_SecureHash = $this->get_SecureHash($post_data);
@@ -70,9 +82,40 @@ class CheckoutController
         $post_data['pp_SecureHash'] = $pp_SecureHash;
 
         Session::put('post_data',$post_data);
-        echo "<pre>";
-        print_r($post_data);
-        echo "</pre>";
+        // echo "<pre>";
+        // print_r($post_data);
+        // echo "</pre>";
+
+
+        $userid = Auth::id();
+        $product = cart::where('user_id',$userid)->get();
+
+        foreach($product as $cart){
+
+        
+
+        $order = new order;
+
+        $order->name = $request->fullname;
+        $order->email = $request->email;
+        $order->city =  $request->city;
+        $order->phone = $request->phone;
+        $order->address = $request->address;
+        $order->status = $request->status;
+        $order->pp_TxnRefNo = $pp_TxnRefNo;
+        $order->product_name = $cart['name'];
+        $order->price = $cart['price'];
+        $order->qty = $cart['Quantity'];
+        $order->product_id = $cart['product_id'];
+        $order->user_id = $cart['user_id'];
+
+        $order->save();
+
+        }
+
+        cart::where('user_id',$userid)->delete();
+    
+        return view('doCheckoutPagetoJazzcash');
             
     }
 
@@ -93,6 +136,11 @@ class CheckoutController
 
         return $pp_SecureHash;
      }
+
+
+ 
+
+
 
     
 }

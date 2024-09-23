@@ -21,8 +21,8 @@
 </head>
 <body>
     
-    <div class="container mt-5" style="background:rgb(253, 253, 3);">
-        <div class="row justify-content-center border border-danger " style="padding-left:85px;">
+    <div class="container mt-5" style="background:rgb(220, 248, 37);">
+        <div class="row justify-content-center  ms-lg-5 ps-xl-4" style="padding-left:10px;">
             <div class="col-12 col-sm-12 col-md-5 col-xl-3 ">
                 <h3 class="text-black fw-bolder mt-3" id="aboutUs">ABOUT US</h3>
                
@@ -41,7 +41,7 @@
             </div>
 
 
-            <div class="col-12 col-md-5 col-sm-12 col-xl-3 mt-md-3 ms-md-5 ">
+            <div class="col-12 col-md-5 col-sm-12 col-xl-3 mt-md-3 ms-md-5 px-1 ">
                 <h3 class="text-black fw-bolder ">SERVICE</h3>
                <ul class="list-unstyled">
                 <li class="pt-2"><a href="#" class="text-black text-decoration-none unstyled  ps-3"><i class="fa-duotone fa-solid fa-hashtag pe-2"></i>List item #1</a></li>
@@ -51,7 +51,7 @@
                </ul>
             </div>
 
- <div class="col-12 col-md-6 col-sm-12 mt-md-3 col-xl-3 px-3" style="height:240px;">
+ <div class="col-12 col-md-6 col-sm-12 mt-md-3 col-xl-3 px-1" style="height:240px;">
                 <h3 class="text-black fw-bold">CONTACT US</h3>
                 <h6 class="pt-2"><i class="fa-duotone fa-solid fa-phone  pe-2"></i>923081491748</h6>
                 <h6 class="pt-2"><i class="fa-solid fa-envelope pe-2"></i>wasifhasher@gmail.com</h6>

@@ -9,13 +9,7 @@ class order extends Model
 {
     use HasFactory;
 
-    protected $table = "orders";
-    public $timestamps = false;
+    protected $table = 'orders';
+    public $timestamps = true;
     protected $guarded = [];
-
-    public function user(){
-        return $this->belongsTo(user::class);
-    }
-
-
 }

@@ -32,7 +32,7 @@
                 </div>
                 <hr class="text-white p-1">
 
-                <div class="mt-4 ">
+                <div class="mt-4">
                     <ul class="ps-1">
                         <li class="list-unstyled py-1 w-100 {{ Request::is('dashboard') ? 'active' : ''}}"><a href="/dashboard" class="py-3  text-white text-decoration-none" id="sameid"><i class="fa-solid fa-house pe-3 ps-2"></i>Home</a></li>
                         <li class="list-unstyled py-1 {{ Request::is('mainOrder') ? 'active' : ''}}"><a href="/mainOrder" class="py-3  text-white text-decoration-none" id="sameid"><i class="fa-solid fa-cart-shopping pe-3 ps-2"></i>Order</a></li>

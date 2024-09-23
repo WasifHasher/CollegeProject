@@ -14,6 +14,89 @@
             background-color: orange;
             border-radius: 50px;
 }
+
+
+@media screen and (max-width:992px){
+  #togglerIcon{
+      background:yellow;
+      color:wheat;
+    }
+}
+@media screen and (max-width:768px){
+  #togglerIcon{
+      background:white;
+      color:wheat;
+      margin-left:70%;
+      font-size: 15px;
+    }
+    #username{
+      font-size: 20px;
+      position:absolute;
+      left: 77%;
+      top: 2%;
+      position: fixed;
+      
+    }
+
+
+
+}
+
+
+
+@media screen and (max-width:686px){
+  #togglerIcon{
+      background:white;
+      color:wheat;
+      margin-left:60%;
+      font-size: 15px;
+    }
+    #username{
+      font-size: 20px;
+      left: 70%;
+      top:15px;
+      position: absolute;
+      
+    }
+
+
+
+}
+
+@media screen and (max-width:500px){
+  #togglerIcon{
+      background:white;
+      color:wheat;
+      margin-left:50%;
+      font-size: 15px;
+    }
+    #username{
+      font-size: 20px;
+      left: 46%;
+      top:15px;
+      position: absolute;
+      
+    }
+}
+
+@media screen and (max-width:430px){
+  #togglerIcon{
+      background:white;
+      color:wheat;
+      margin-left:40%;
+      font-size: 15px;
+    }
+    #username{
+      font-size: 20px;
+      left: 56%;
+      top:15px;
+      position: absolute;
+      
+    }
+
+
+
+}
     </style>
 </head>
 <body>
@@ -21,7 +104,7 @@
     <nav class="navbar navbar-expand-lg bg-black">
         <div class="container-fluid">
           <a class="navbar-brand ps-4 text-white" href="#">E-commerce</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler" id="togglerIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse py-2" id="navbarSupportedContent">
@@ -31,8 +114,8 @@
                 <a class="nav-link text-white" href="/">Home</a>
               </li>
 
-              <li class="nav-item px-2 ">
-                <a class="nav-link text-white" href="#">Order</a>
+              <li class="nav-item px-2  {{ Request::is('orderPage') ? 'active' : ''}}">
+                <a class="nav-link text-white" href="/orderPage">Order</a>
               </li>
              
               <li class="nav-item px-2 {{ Request::is('AboutPage') ? 'active' : ''}}">
@@ -43,7 +126,10 @@
               </li>
 
               <li class="nav-item px-2">
-                <a class="nav-link text-white" href="#">Cart</a>
+                @php
+                    $totalrecord = 0;
+                @endphp
+                <a class="nav-link text-white" href="/CheckoutPage">Cart <span>({{$totalrecord->count()}})</span></a>
               </li>
               @if (Auth::check('name'))
 
@@ -65,9 +151,9 @@
           </div>
 
           
-          <div class="pe-5 text-white">
+          <div class="pe-5 text-white" >
             @if (Auth::check('name'))
-            <h3>{{Auth::user()->name}}</h3>
+            <h3 id="username">{{Auth::user()->name}}</h3>
             @endif
           </div>
           

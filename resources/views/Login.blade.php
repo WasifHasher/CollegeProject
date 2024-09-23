@@ -38,7 +38,7 @@
 
                         </form>
                         <div class="mt-3 text-center">
-                            <span class="">_______________ <a href="/register"  style="color:gray;" class="text-decoration-none">Register</a>_______________</span>
+                            <span class="">_______________ <a href="/Websiteregister"  style="color:gray;" class="text-decoration-none">Register</a>_______________</span>
                           
                             
 

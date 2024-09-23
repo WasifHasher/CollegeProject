@@ -5,17 +5,17 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cart extends Model
+class product extends Model
 {
     use HasFactory;
 
-    protected $table = 'carts';
+    protected $table = "products";
     public $timestamps = false;
     protected $guarded = [];
 
     public function user(){
         return $this->belongsTo(user::class);
-       }
+    }
 
 
 }

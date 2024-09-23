@@ -9,13 +9,15 @@
 
 use App\Models\User;
 use App\Models\slider;
-use App\Models\order;
+use App\Models\product;
 use App\Models\about;
 use App\Models\cart;
+use App\Models\order;
+
 use App\Http\Middleware\ValidUser;
 
 
-Route::get('/',[HomeController::class,'home']);
+Route::get('/',[HomeController::class,'home'])->name('Index');
 // Route::get('/',[HomeController::class,'card']);
 Route::get('/Websiteregister',[RegisterController::class,'WebsiteRegistertion']);
 Route::post('/Saveregister',[RegisterController::class,'Register']);
@@ -23,17 +25,20 @@ Route::get('/WebsiteLogin',[RegisterController::class,'showLogin']);
 Route::post('/SaveLogin',[RegisterController::class,'Login']);
 Route::get('/Websitelogout',[RegisterController::class,'Logout']);
 
+Route::get('/orderPage',[HomeController::class,'orderPage']);
+
 Route::get('/AboutPage',[HomeController::class,'aboutpage']);
 
 Route::get('/contactPage',[HomeController::class,'contactPage']);
 
-Route::get('/Checkout',[CheckoutController::class,'showPaymentPage']);
+Route::get('/CheckoutPage',[CheckoutController::class,'showPaymentPage']);
 
 Route::post('/checkout',[CheckoutController::class,'Docheckout']);
 
 Route::post('/addToCart',[HomeController::class,'addtocart']);
 
-
+Route::post('/searchitem',[HomeController::class,'search']);
+Route::get('/totalItem',[HomeController::class,'header']);
 
 
 

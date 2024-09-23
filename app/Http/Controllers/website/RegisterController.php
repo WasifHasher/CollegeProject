@@ -55,6 +55,9 @@ class RegisterController
         return view('Login');
     }
 
+    public function authenticated(){
+        \Auth::logoutOtherDevices(request('password'));
+    }
    
     
 }

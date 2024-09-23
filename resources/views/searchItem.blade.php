@@ -3,13 +3,13 @@
 
 
 <div class="container mt-5">
-    <div class="row justify-content-center">
-      <h3 class="text-left ps-3 text-uppercase">Order Items</h3>
+    <div class="row">
+      <h3 class="text-left text-uppercase">Order Items</h3>
 
       
       
-      @foreach ($orderPage as $order)
-      <div class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="height: 280px;">
+      @foreach ($search as $order)
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="height: 280px;">
         
         
           <img src="Products/{{($order->image)}}" style="height:90px;width:90px;border-radius:50px;">
