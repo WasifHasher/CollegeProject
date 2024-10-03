@@ -44,6 +44,7 @@
        position: absolute;
        top: 55%;
        left:50%;
+       width: 50%;
        transform: translateX(-50%);
        border:none;
         /* border:3px solid red;
@@ -53,7 +54,13 @@
         padding: 10px 0px;
     }
     #btnSearch{
-        background: blue;
+        background: orange;
+        border-radius:0px 5px 5px 0px;
+        border:none;
+    }
+
+    #orderbtnSearch{
+        background:orange;
         border-radius:0px 5px 5px 0px;
         border:none;
     }
@@ -74,11 +81,45 @@
         -webkit-background-clip: text;
         color:transparent;
     }
+
+    #checkout{
+        width: 30%;
+    }
+   
+       
+   
+   
+    @media screen and (max-width:992px){
+
+        #searchinput{
+
+        width: 70%;
+        /* border:2px solid red; */
+        }
+
+        #checkout{
+            width: 50%;
+            
+        }
+       
+    }
+    @media screen and (max-width:500px){
+
+        #searchinput{
+      
+        width: 90%;
+        /* border:2px solid red; */
+    }
+    #checkout{
+        width: 100%;
+    }
    
 
-   
+    }
 
-   
+
+
+
     
     
     </style>
@@ -110,7 +151,7 @@
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
  
-
+   
  
 
 </body>

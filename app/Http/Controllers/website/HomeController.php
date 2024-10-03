@@ -6,25 +6,27 @@ use App\Models\Slider;
 use App\Models\product;
 use App\Models\About;
 use App\Models\Cart;
+use App\Models\comment;
 use Illuminate\Http\Request;
 
 class HomeController
 {
 
+    // Below we show the total record on header file which customer see all counted item
    
+    public function header(){
+    $user_id = Auth::id();
+    $totalrecords = cart::where('user_id',$user_id)->count();
+    return view('header',compact('totalrecords'));
+    }
 
-   public function home(){
+
+
+    public function home(){
     $get = Slider::all();
-    $orders = product::get();
-     
+    $orders = product::get()->take(10);
     return view('home',['gets' => $get],['orders' =>$orders]);
-   }
-
-   public function header(){
-    $totalrecord = cart::get();
-    return view('header',compact('totalrecord'));
-   }
-
+    }
 
 
     public function orderPage(){
@@ -68,12 +70,33 @@ class HomeController
 
         return redirect('/')->with('status','Your items is added.');
 
-
-
-
     }
 
+public function SubmitComment(Request $req){
 
+    $req->validate([
+        'name' => 'required',
+        'email' => 'required',
+        'address' => 'required'
+    ]);
+
+    $save = new comment;
+
+    $userId = Auth::id();
+
+    $save->name = $req->name;
+    $save->email = $req->email;
+    $save->address = $req->address;
+    $save->user_id = $userId;
+
+    $save->save();
+
+    return redirect('/contactPage')->with('status','Your message has been Sent.');
+
+
+
+
+}
 
 
 

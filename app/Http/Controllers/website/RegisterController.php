@@ -46,6 +46,9 @@ class RegisterController
         if(Auth::attempt($credential)){
             return redirect('/');
         }
+        else{
+            return redirect('/WebsiteLogin')->with('status','Please Check your username and passowrd');
+        }
 
     }
 

@@ -31,14 +31,20 @@
    
   </div>
     
-    <form action="/searchitem" method="POST" id="searchinput" class="w-50 border-none mt-3">
-      @csrf
-      <div class="form-group d-flex">
-        <input type="text" name="query" class="form-Control w-100 ps-2" id="input" placeholder="Searching...">
-        <button class="text-white" id="btnSearch"><i class="fa-solid fa-magnifying-glass px-2 fs-5"></i></button>
-      </div>
-    </form>
-  
+   
+
+      <form action="/searchitem" method="POST" id="searchinput" class="mt-3">
+        @csrf
+       
+
+          <div class="form-group d-flex w-100">
+            <input type="text" name="query" class="form-Control w-100 ps-2 border border-none" id="input" placeholder="Searching...">
+            <button class="text-white" id="btnSearch"><i class="fa-solid fa-magnifying-glass px-2 fs-5"></i></button>
+          </div>
+      
+        </form>
+      
+    
     
   <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
     <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -67,10 +73,10 @@
       
       
       @foreach ($orders as $order)
-      <div class="col-5 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 h-25 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="height: 280px;">
+      <div class="col-7 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="max-height: 280px;">
         
         
-          <img src="Products/{{($order->image)}}" class="w-50 h-25 " style="border-radius:50%;">
+          <img src="Products/{{($order->image)}}"  style="border-radius:50%;height:80px;width:90px;">
           <h4 class="pt-2">{{$order->name}}</h4>
           <p>Rs: {{$order->price}}</p>
         

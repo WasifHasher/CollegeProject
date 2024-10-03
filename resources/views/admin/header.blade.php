@@ -21,7 +21,7 @@
     padding: 5px;
     position: absolute;
     top: 15%;
-    left: 66%;
+    left: 67%;
 
   }
 
@@ -36,7 +36,7 @@
     padding: 5px;
     position: absolute;
     top: 15%;
-    left: 70%;
+    left: 71%;
   }
 </style>
 
@@ -58,14 +58,14 @@
 
           
                   <div class="ms-4" style="margin-right:-160px;" >
-                    <i class="fa-solid fa-bell ps-4 fs-5" ><span id="spanOne">0</span></i>
-                    <i class="fa-solid fa-comment ms-4 fs-5"><span id="spanTwo">0</span></i>
+                    <i class="fa-solid fa-bell ps-4 fs-5" style="color:darkblue;" ><span id="spanOne">0</span></i>
+                    <a href="/ShowComments"><i class="fa-solid fa-comment ms-4 fs-5" style="color:darkblue;"><span id="spanTwo">{{ \App\Models\comment::count() }}</span></i></a>
                     
                   </div>
 
              <div class="col-3 mt-3 ps-5" style="margin-left:200px;" >
                
-               <p class="fs-5 ms-4"><i class="fa-duotone fa-solid fa-user pe-2"></i>{{Auth::user()->name}}</p>
+               <p class="fs-5 ms-4"><i class="fa-duotone fa-solid fa-user pe-2" style="color:darkblue;"></i>{{Auth::user()->name}}</p>
             </div>
 
         </div>

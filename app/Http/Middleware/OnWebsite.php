@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades\Auth;
 
-class ValidUser
+class OnWebsite
 {
     /**
      * Handle an incoming request.
@@ -17,15 +17,14 @@ class ValidUser
     public function handle(Request $request, Closure $next): Response
     {
 
-        if(Auth::user()->usertype == 'admin'){
+        if(Auth::user()->usertype == 'user'){
             return $next($request);
         }
         // elseif(Auth::user()->usertype == 'user'){
         //     return redirect('/');
         // }
         else{
-            return redirect('/login');
+            return view('Login');
         }
-
     }
 }

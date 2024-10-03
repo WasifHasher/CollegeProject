@@ -8,14 +8,13 @@
 <div class="d-flex mt-4">
     <h3>Slider Pages</h3>
 
-    <h3 style="margin-left:900px;">Total : {{$shows->count();}}</h3>
-</div>
-<div class="mt-3">
-    <a href="ShowSliderPage" class="p-2 text-white fw-bold rounded text-decoration-none px-3" style="background: darkblue;width:120px">Add Slider</a>
+    <a href="ShowSliderPage" class="p-2 text-white fw-bold rounded text-decoration-none px-3" style="background: darkblue;width:120px;margin-left:69%;">Add Slider</a>
+   
 </div>
 
 
-           <div class="container mt-5">
+
+           <div class="container mt-3">
             <div class="row">
                 <div class="col-11">
 
@@ -43,7 +42,7 @@
                                 <td>
                                     <img src="Products/{{($show->image)}}" height="50px" width="80px">
                                 </td>
-                                <td>{{ $show->user->name}}</td>
+                                <td>{{ $show->user->usertype}}</td>
                                 <td>
                                     <a href="{{ url ('editSlider/'.$show->id.'/edit')}}" class="text-decoration-none btn btn-success w-100">Edit</a>
                                 </td>
@@ -55,7 +54,10 @@
                             @endforeach
                         </tbody>
                       </table>
+
+                     
                 </div>
+                <h3 style="margin-left:80%;">Total : {{$shows->count();}}</h3>
             </div>
           </div>
        

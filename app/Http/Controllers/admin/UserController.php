@@ -20,20 +20,14 @@ class UserController
             'name' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed|min:4',
-            
-            
         ]);
 
-        
         $users = user::create($data);
-       
-        
 
         if($users){
             return redirect("/login")->with('status','You are Registered Successfully.');
 
         }
-
     }
 
 // Below we make the Login section for the authentication 
@@ -51,9 +45,15 @@ class UserController
         if(Auth::attempt($credential)){
             return redirect('/dashboard');
         }
+        elseif(!Auth::attempt($credential)){
 
+            return redirect('/login')->with('status','Please check your username and password.');
+        }
+        
+        else{
+            return redirect('/login')->with('status','Please You are not allowed for this site.');
+        }
     }
-
 
     public function Logout(){
         Auth::Logout();

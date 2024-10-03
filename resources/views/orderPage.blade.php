@@ -1,10 +1,23 @@
 @extends('frontPage')
 @section('mainContent')
 
+  <div class="container mt-3">
+    <div class="row justify-content-center">
+      <div class="col-11 col-md-10 col-lg-8 col-xl-7">
+        <form action="/searchitem" method="POST"  class="border-none mt-3 ">
+          @csrf
+          <div class="form-group d-flex">
+            <input type="text" name="query" class="form-Control w-100 ps-2 border border-none shadow" id="input" placeholder="Searching...">
+            <button class="text-white shadow" id="orderbtnSearch"><i class="fa-solid fa-magnifying-glass px-2 fs-5"></i></button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 <div class="container mt-5">
     <div class="row justify-content-center">
-      <h3 class="text-left ps-3 text-uppercase">Order Items</h3>
+      <h3 class="text-left ps-5 text-uppercase">Order Items</h3>
 
       
       

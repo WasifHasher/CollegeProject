@@ -8,15 +8,14 @@
 <div class="d-flex mt-4">
     <h3>About Pages</h3>
 
-    <h3 style="margin-left:815px;">Total : {{$abouts->count()}}</h3>
+    <a href="/ShowAboutPage" class="p-2 text-white fw-bold rounded text-decoration-none px-3" style="background: darkblue;width:120px;margin-left:69%;">Add About</a>
+    
 </div>
 
-<div class="mt-3">
-    <a href="/ShowAboutPage" class="p-2 text-white fw-bold rounded text-decoration-none px-3" style="background: darkblue;width:120px">Add About</a>
-</div>
+
  
 
-           <div class="container mt-5">
+           <div class="container mt-3">
             <div class="row">
                 <div class="col-11">
 
@@ -44,7 +43,7 @@
                                 <td>
                                     <img src="Products/{{($about->image)}}" class="rounded" height="50px" width="80px">
                                 </td>
-                                <td>{{ $about->user->name}}</td>
+                                <td>{{ $about->user->usertype}}</td>
                                 <td>
                                     <a href="{{ url ('editAbout/'.$about->id.'/edit')}}" class="text-decoration-none btn btn-success ">Edit</a>
                                 </td>
@@ -62,6 +61,8 @@
 
 
                 </div>
+
+                <h3 style="margin-left:82%;">Total : {{$abouts->count()}}</h3>
             </div>
           </div>
        

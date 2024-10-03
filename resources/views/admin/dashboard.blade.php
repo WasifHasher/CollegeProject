@@ -18,6 +18,10 @@
         color:white;
     }
 
+    #main{
+        height: 750px;
+    }
+
 
        
        @media screen and (max-width:992px){
@@ -45,14 +49,6 @@
             padding: 4px;
         }
 
-    
-
-
-      
-       
-       
-            
-    
 
        }
        @media screen and (max-width:768px){
@@ -86,9 +82,9 @@
     </style>
 </head>
 <body>
-        <div class="container-fluid">
+        <div class="container-fluid px-0">
     
-            <div class="row" id="main">
+            <div class="row border border-danger" id="main">
                  <div class="col-2" id="sidebar">{{View::make('admin.sidebar')}}</div>
                  <div class="col-10" style="height:80px;" id="both">
                     <div class="row" id="header" >{{View::make('admin.header')}}</div>
@@ -98,7 +94,7 @@
             </div> 
 
            
-            <div class="row mt-5">
+            <div class="row">
                 {{View::make('admin/footer')}}
             </div>
             

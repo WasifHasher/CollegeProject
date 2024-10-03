@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\slider;
 use App\Models\product;
 use App\Models\about;
+use App\Models\CustomerOrder;
+use App\Models\comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -20,16 +22,9 @@ class AllDataController
          return view('admin.search',['products' => $data]);
      }
  
-    //  public function aboutSearch(Request $req){
-    //     $abouts = about::where('aboutTitle','like','%' .$req->input('query').'%')->get();
-    //     return view('admin.aboutSearch',['aboutSearchs' => $abouts]);
-    //  }
-
-
     public function showIndex(){
 
         $userid = Auth::id();
-       
         $shows = slider::where('user_id',$userid)->with('user')->get();
         return view('admin.Slider',compact('shows'));
     }
@@ -40,6 +35,8 @@ class AllDataController
             'description' => 'required',
             'image' => 'required|mimes:jpg,png,jpeg,webp'
         ]);
+
+       // below we bring the Model file name as Slider
         $slider = new slider;
         $userid = Auth::id();
 
@@ -110,7 +107,7 @@ class AllDataController
 public function orderIndex(){
 
     $userid = Auth::id();
-    $orders = product::where('user_id',$userid)->with('user')->get();
+    $orders = product::where('user_id',$userid)->with('user')->paginate(7);
     return view('admin.OrderSave',compact('orders'));
 }
 /*****************************************************************************************************/
@@ -275,7 +272,37 @@ public function deleteAbout(string $id){
 
 
 
+public function ShowAllcomments(){
+   
+    $comments = comment::get();
+    return view('admin.CommentPage',compact('comments'));
+}
 
+
+public function DeleteComment(int $id){
+
+    $deletecomment = comment::find($id);
+    $deletecomment->delete();
+    return redirect('/ShowComments')->with('status','Your Data is Successfully Deleted.');
+
+}
+
+
+public function RecievedOrder(){
+
+    $user_id = Auth::id();
+    $recieved_order = CustomerOrder::get();
+    $showOrder = CustomerOrder::where('user_id',$user_id)->count();
+    return view('admin.RecievedOrder',compact('recieved_order'));
+}
+
+public function deleteRecOrd(int $id){
+
+    $delete_order = CustomerOrder::find($id);
+    $delete_order->delete();
+    return redirect('/RecievedOrder')->with('status','Your Order is Successfully Deleted.');
+
+}
 
 
 

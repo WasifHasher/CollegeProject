@@ -9,14 +9,24 @@ use App\Models\order;
 use Config;
 class CheckoutController
 {
-    public function showPaymentPage(){
-        $userid = Auth::id();
-        $products = cart::where('user_id',$userid)->get();
-        return view('Checkout',compact('products'));
-    }
+    // public function showPaymentPage(){
+    //     $userid = Auth::id();
+    //     $products = cart::where('user_id',$userid)->get();
+    //     return view('Checkout',compact('products'));
+    // }
     
 
     public function Docheckout(Request $request){
+
+        $request->validate([
+            'fullname' => 'required',
+            'email'    => 'required|nullable',
+            'city'     => 'required',
+            'phone'    => 'required',
+            'status'   => 'required',
+            'address'  => 'required'
+        ]);
+
 
         $data = $request->input();
         
@@ -140,6 +150,19 @@ class CheckoutController
 
  
 
+     public function deleteItem(string $id){
+
+        $deleteItem = cart::find($id);
+        $image_path = public_path('Products/'.$deleteItem->image);
+
+        if(File_exists($image_path)){
+            unlink($image_path);
+        }
+        $deleteItem->delete();
+
+        return redirect('/CheckoutPage')->with('status','Your are item is deleted');
+
+     }
 
 
     
