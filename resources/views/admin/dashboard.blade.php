@@ -11,6 +11,7 @@
     <title>Document</title>
 
   <style>
+
     #th{
         padding: 15px 10px;
         
@@ -19,7 +20,11 @@
     }
 
     #main{
-        height: 750px;
+        height: 100%;
+        overflow: scroll;
+    }
+    #sidebar{
+        height: 100%;
     }
 
 
@@ -80,32 +85,40 @@
 
        }
     </style>
+
+
+
+
+
 </head>
 <body>
         <div class="container-fluid px-0">
     
-            <div class="row border border-danger" id="main">
+            <div class="row " id="main">
                  <div class="col-2" id="sidebar">{{View::make('admin.sidebar')}}</div>
-                 <div class="col-10" style="height:80px;" id="both">
+                 <div class="col-10">
                     <div class="row" id="header" >{{View::make('admin.header')}}</div>
                     <div class="row">@yield('content') </div>   
                 </div> 
                
             </div> 
 
-           
-            <div class="row">
-                {{View::make('admin/footer')}}
+            <div class="row  bg-black my-0">
+                <div class="col-12 px-0">
+
+                    {{View::make('admin/footer')}}
+                </div>
             </div>
+           
             
         </div>
         
        
+       
                 
-          
-            
-           
-      
-    
+       
+
+     
+        
 </body>
 </html>

@@ -6,6 +6,7 @@ use App\Models\Slider;
 use App\Models\product;
 use App\Models\About;
 use App\Models\Cart;
+use App\Models\Rating;
 use App\Models\comment;
 use Illuminate\Http\Request;
 
@@ -23,10 +24,51 @@ class HomeController
 
 
     public function home(){
-    $get = Slider::all();
-    $orders = product::get()->take(10);
-    return view('home',['gets' => $get],['orders' =>$orders]);
+        
+    $gets = Slider::all();
+    $products = product::get()->take(10);
+
+    // $prod_id = product::select('id')->get();
+
+
+    // $ratings = Rating::where('prod_id', $products->id)->get();
+    // $rating_sum = Rating::where('prod_id', $products->id)->sum('rating');
+
+    // if ($ratings->count() > 0) {
+    //     $ratingvalue = $rating_sum / $ratings->count();
+    // } else {
+    //     $ratingvalue = 0; // No ratings available
+    // }
+
+    // return view('home',['gets' => $get],['products' =>$products],['ratingvalue' => $ratingvalue]);
+    return view('home',compact('gets','products'));
     }
+
+
+
+
+
+    
+
+
+    public function detailFunction(string $id){
+
+           $details = product::find($id);
+           // Fetch the product
+            $ratings = Rating::where('prod_id', $details->id)->get();
+            $rating_sum = Rating::where('prod_id', $details->id)->sum('rating');
+        
+            if ($ratings->count() > 0) {
+                $ratingvalue = $rating_sum / $ratings->count();
+            } else {
+                $ratingvalue = 0; // No ratings available
+            }
+        
+            return view('details', compact('details', 'ratingvalue'));
+        
+    
+    }
+   
 
 
     public function orderPage(){
@@ -97,6 +139,54 @@ public function SubmitComment(Request $req){
 
 
 }
+
+
+
+
+
+
+public function saveRating(Request $req)
+{
+    // Get the authenticated user's ID
+    $user_id = Auth::id();
+
+    if (!$user_id) {
+        return redirect()->back()->with('status', 'You need to be logged in to rate products.');
+    }
+
+    // Validate the incoming request data
+    $req->validate([
+        'pid' => 'required',
+        'rate' => 'required|integer|min:1|max:5',
+    ]);
+
+    $product_id = $req->input('pid');
+    $rating_value = $req->input('rate');
+
+    // Check if the user has already rated this product
+    $existingRating = Rating::where('user_id', $user_id)
+                            ->where('prod_id', $product_id)
+                            ->first();
+
+    if ($existingRating) {
+        // Update the existing rating
+        $existingRating->rating = $rating_value;
+        $existingRating->save();
+
+        return redirect()->back()->with('status', 'Your review has been updated.');
+    }
+
+    // Create a new rating
+    $rating = new Rating;
+    $rating->user_id = $user_id;
+    $rating->prod_id = $product_id;
+    $rating->rating = $rating_value;
+    $rating->save();
+
+    return redirect()->back()->with('status', 'Your review has been added.');
+}
+
+   
 
 
 

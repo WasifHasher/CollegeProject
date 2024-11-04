@@ -9,10 +9,7 @@
 
 <div class="d-flex mt-4">
     <h3>Orders Pages</h3>
-    
-
         <a href="/ShowOrderPage" class="p-2 text-white fw-bold  rounded text-decoration-none px-3" style="background: darkblue;width:120px;margin-left:69%;">Add Order</a>
-   
 </div>
 
 
@@ -26,6 +23,7 @@
                         <tr>
                           <th id="th">ID</th>
                           <th id="th">Name</th>
+                          <th id="th">Desc</th>
                           <th id="th">Price</th>
                           <th id="th">Image</th>
                           <th id="th">UserType</th>
@@ -41,16 +39,17 @@
                             <tr>
                                 <td>{{ $order->id}}</td>
                                 <td>{{ $order->name}}</td>
+                                <td class="w-50">{{ $order->desc}}</td>
                                 <td>{{ $order->price}}</td>
                                 <td>
                                     <img src="Products/{{($order->image)}}" height="50px" width="80px">
                                 </td>
                                 <td>{{ $order->user->usertype}}</td>
                                 <td>
-                                    <a href="{{ url ('editOrder/'.$order->id.'/edit')}}" class="text-decoration-none btn btn-success w-50">Edit</a>
+                                    <a href="{{ url ('editOrder/'.$order->id.'/edit')}}" class="text-decoration-none btn btn-success w-100">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url ('deleteOrder/'.$order->id.'/delete')}}" class="text-decoration-none btn btn-danger w-50">Delete</a>
+                                    <a href="{{ url ('deleteOrder/'.$order->id.'/delete')}}" class="text-decoration-none btn btn-danger w-100">Delete</a>
                                 </td>
                             </tr>
                                 

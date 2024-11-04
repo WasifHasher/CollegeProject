@@ -10,14 +10,20 @@
     <title>Document</title>
 
     <style>
-        
+
+         
+         span{
+            color:white;
+         }
+
         .active{
-        
-            font-weight: bold;
-            background-color:rgb(4, 223, 247);
-           border-radius: 50px;
-           padding-left:-20px;
            
+            font-weight: bold;
+            background-color:rgb(244, 246, 244);
+            color: darkblue;
+            border-radius: 50px;
+            padding-left:-20px;
+            
         }
        
     </style>
@@ -26,7 +32,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12   " style="background:darkblue;height:750px;" >
+            <div class="col-12   " style="background:rgb(63, 2, 137);height:900px;" >
                 <div class="py-4 text-center fs-4">
                     <a href="#" id="dashboard" class="text-white text-decoration-none fw-bolder">Dashboard</a>
                 </div>
@@ -34,26 +40,29 @@
 
                 <div class="mt-4">
                     <ul class="ps-1">
-                        <li class="list-unstyled py-2 w-100 {{ Request::is('dashboard') ? 'active' : ''}}"><a href="/dashboard" class="py-3  text-white text-decoration-none" id="sameid"><i class="fa-solid fa-house pe-3 ps-2"></i>Home</a></li>
-                        <li class="list-unstyled py-2 {{ Request::is('mainOrder') ? 'active' : ''}}"><a href="/mainOrder" class="py-3  text-white text-decoration-none" id="sameid"><i class="fa-solid fa-cart-shopping pe-3 ps-2"></i>Product</a></li>
-                        <li class="list-unstyled py-2 {{ Request::is('mainslider') ? 'active' : ''}}"><a href="/mainslider" id="sameid" class="py-3 text-white text-decoration-none"><i class="fa-solid fa-sliders pe-3 ps-2" ps-2></i>Slider</a></li>
-                        <li class="list-unstyled py-2 {{ Request::is('mainAbout') ? 'active' : ''}}"><a href="/mainAbout" class="py-3 text-white text-decoration-none" id="sameid"><i class="fa-solid fa-address-card pe-3 ps-2"></i>About</a></li>
 
-                        {{-- @php
-                            $showrecord = 3;
-                        @endphp --}}
+                        <li class="list-unstyled py-2 "><a href="/dashboard" class="py-3  text-decoration-none"><span class="{{ Request::is('dashboard') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-house pe-3 ps-2"></i>Home</span></a></li>
+                 
+                        <li class="list-unstyled py-2"><a href="/mainOrder" class="py-3  text-decoration-none"><span class="{{ Request::is('mainOrder') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-cart-shopping pe-3 ps-2"></i>Products</span></a></li>
+                       
+                        <li class="list-unstyled py-2"><a href="/mainslider" class="py-3  text-decoration-none"><span class="{{ Request::is('mainslider') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-sliders pe-3 ps-2"></i>Slider</span></a></li>
+                      
+                      
+                        <li class="list-unstyled py-2"><a href="/mainAbout" class="py-3  text-decoration-none"><span class="{{ Request::is('mainAbout') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-address-card pe-3 ps-2"></i>About</span></a></li>
+                 
+                      
+                        <li class="list-unstyled py-2"><a href="/RecievedOrder" class="py-4  text-decoration-none"><span class="{{ Request::is('RecievedOrder') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>Order({{ \App\Models\CustomerOrder::count() }})</span></a></li>
 
-                        <li class="list-unstyled py-2 {{ Request::is('RecievedOrder') ? 'active' : ''}}"><a href="/RecievedOrder" class="py-3 text-white text-decoration-none" id="sameid"><i class="fa-solid fa-gift pe-3 ps-2"></i>Recieved Orders <span class="">({{ \App\Models\CustomerOrder::count() }})
-                        </span></a></li>
+                        <li class="list-unstyled py-2 "><a href="/ShowComments" class="py-4  text-decoration-none"><span class="{{ Request::is('ShowComments') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-phone pe-3 ps-2"></i>Comment({{ \App\Models\comment::count() }})</span></a></li>
 
-                        <li class="list-unstyled py-2 {{ Request::is('ShowComments') ? 'active' : ''}}"><a href="/ShowComments" class="py-3 text-white text-decoration-none" id="sameid"><i class="fa-solid fa-phone pe-3 ps-2"></i>Comments <span> ({{ \App\Models\comment::count() }})</span></a></li>
                         
                         @if (Auth::check('name'))
+                        <li class="list-unstyled py-2 w-100 "><a href="/logout" class="py-3  text-decoration-none"><span class="{{ Request::is('logout') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-right-from-bracket pe-3 ps-2"></i>Logout</span></a></li>
                             
-                        <li class="list-unstyled py-2"  Zy><a href="/logout" class="py-3 text-white text-decoration-none"><i class="fa-solid fa-right-from-bracket pe-3 ps-2"></i>Logout</a></li>
+                      
                         @else
-                        <li class="list-unstyled py-1"><a href="/login" class="py-3 text-white fs-4 text-decoration-none ps-2">Login</a></li>
-                        <li class="list-unstyled py-1"><a href="/register" class="py-3 text-white fs-4 text-decoration-none ps-2">Register</a></li>
+                        <li class="list-unstyled py-1"><a href="/login" class="py-3  fs-4 text-decoration-none ps-2">Login</a></li>
+                        <li class="list-unstyled py-1"><a href="/register" class="py-3  fs-4 text-decoration-none ps-2">Register</a></li>
                         @endif
                     </ul>
 

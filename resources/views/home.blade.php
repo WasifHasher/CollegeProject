@@ -1,6 +1,10 @@
 @extends('frontPage')
 @section('mainContent')
 
+
+
+
+
 <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -62,57 +66,67 @@
 
 
 
-
-{{-- This area for the card section --}}
-
-
-  <div class="container mt-5">
+  <div class="container-fluid mt-5">
     <div class="row justify-content-center" style="height: 100%;">
-      <h3 class="text-center text-uppercase" id="orderItems">Order Items</h3>
+      <h3 class="text-center text-uppercase" id="orderItems">Product Items</h3>
 
+      @foreach ($products as $product)
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3 mt-xl-5 text-center shadow bg-white rounded mx-3 my-4 py-3 relative" style="max-height: 300px;">
+        
       
       
-      @foreach ($orders as $order)
-      <div class="col-7 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="max-height: 280px;">
-        
-        
-          <img src="Products/{{($order->image)}}"  style="border-radius:50%;height:80px;width:90px;">
-          <h4 class="pt-2">{{$order->name}}</h4>
-          <p>Rs: {{$order->price}}</p>
-        
-          {{-- <a href="Checkout/{{$order->id}}" class="w-100 btn btn-primary">Add to Card</a> --}}
+        <a href="{{ url('detail/'.$product->id)}}" class="text-decoration-none">
+          <img src="Products/{{($product->image)}}" class=""  style="height:200px;width:100%;">
+         <div class="w-100">
+          <h4 class="pt-2 float-start">{{$product->name}}</h4>
+          <p class="pt-2 float-end" style="margin-left:0%;">Rs: {{$product->price}}</p>
+        </div>
+        {{-- <div class="row">
+          <div class="rating">
+                 @for ($i = 1; $i <= $ratingvalue; $i++)
+                     <span class="fa fa-star text-warning"></span>
+                 @endfor
 
+                 @for ($j = $ratingvalue+1; $j <= 5; $j++)
+                 <span class="fa fa-star "></span> 
+                 @endfor
+  
+                 <span>({{number_format($ratingvalue,2)}})</span>
+          </div>
+      </div> --}}
 
-        <form action="/addToCart" method="POST" enctype="multipart/form-data">
-          @csrf
-          <input type="hidden" name="product_id" value="{{$order->id}}">
-          <input type="hidden" name="name" value="{{$order->name}}">
-          <input type="hidden" name="price" value="{{$order->price}}">
-          <input type="hidden" name="image" value="{{$order->image}}">
-          <div><input type="number" name='qty' placeholder="0" class="control-form w-50 mb-2 rounded"></div>
+        </a>
           
-          <button class="btn btn-primary w-100">Add to Cart</button>
-        </form>
 
 
-         
+       
       </div>
+
+
+
       @endforeach
+     
+           
 
-
+            
+           
 
     </div>
   </div>
 
 
+
+ 
+
+
   <div class="container mt-5">
     <div class="row">
       <div class="col-12 col-md-6 col-lg-6 col-xl-6 aboutImage">
-        <h2 id="headingTwo">Heading about Chicken</h2>
+        <h2 id="headingTwo">Heading about Owner</h2>
         <p class="mt-5" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur magni exercitationem voluptatibus, repellat numquam animi laboriosam corrupti possimus minima blanditiis odio ipsam consequatur ea saepe dolores cumque ab libero facilis in. Reiciendis laudantium architecto praesentium saepe molestias sapiente dolorum, corrupti inventore accusantium placeat, nostrum laboriosam id vel ex earum illo..</p>
       </div>
       <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-        <img src="Products/1725124698.jpg" class="rounded" width="100%" height="350px;">
+        <img src="Products/profile 1.jpg" class="rounded" width="100%" height="350px;">
       </div>
     </div>
   </div>
@@ -125,8 +139,8 @@
 
 
 
-
-
+{{-- composer require stripe/stripe-php
+ --}}
 
 
 

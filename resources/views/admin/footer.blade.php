@@ -13,11 +13,11 @@
 </head>
 <body style="background:#f4f6f6;">
 
-    <div class="container-fluid">
-        <div class="row bg-black text-center text-white ">
-            <p class="fw-bolder text-warning py-3">Copyrights @2024. All Rights Reserved.</p>
-        </div>
-    </div>
+    
+       
+            <p class="fw-bolder text-warning py-3 text-center">Copyrights @2024. All Rights Reserved.</p>
+        
+    
       
 </body>
 </html>

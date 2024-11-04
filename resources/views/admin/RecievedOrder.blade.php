@@ -31,6 +31,10 @@
                 </tr>
                 <tbody>
                     @foreach ($recieved_order as $recieved)
+
+              
+                    
+               
                         
                     <tr>
                         <td>{{$recieved->id}}</td>
@@ -45,7 +49,7 @@
                         <td>{{$recieved->qty}}</td>
                         <td>{{$recieved->product_id}}</td>
                         <td>{{$recieved->user_id}}</td>
-                        <td>Total</td>
+                        <td>{{$recieved->price*$recieved->qty}}</td>
                         <td>{{$recieved->created_at}}</td>
                         <td>{{$recieved->updated_at}}</td>
                         <td>
@@ -54,7 +58,7 @@
 
 
                     </tr>
-
+                   
                     @endforeach
 
                 </tbody>

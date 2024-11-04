@@ -20,11 +20,9 @@ class ValidUser
         if(Auth::user()->usertype == 'admin'){
             return $next($request);
         }
-        // elseif(Auth::user()->usertype == 'user'){
-        //     return redirect('/');
-        // }
+
         else{
-            return redirect('/login');
+            return redirect()->route('/login');
         }
 
     }

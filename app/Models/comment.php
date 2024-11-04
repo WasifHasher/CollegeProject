@@ -10,7 +10,7 @@ class comment extends Model
     use HasFactory;
 
     protected $table = 'comments';
-    public $timestamps = false;
+    public $timestamps = true;
     protected $guarded = [];
 
     public function user(){

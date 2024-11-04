@@ -18,6 +18,7 @@
   use App\Models\order;
   use App\Models\customerOrder;
   use App\Models\comment;
+  use App\Models\rating;
   use \Stripe\Stripe;
   //Below are the middleware
   use App\Http\Middleware\ValidUser;
@@ -42,7 +43,7 @@ Route::get('/totalItem',[HomeController::class,'header']);
 Route::post('/SubmitComment',[HomeController::class,'SubmitComment']);
 
 // Route::post('/checkout',[CheckoutController::class,'Docheckout']);
-// Route::get('/deleteItem/{id}/delete',[CheckoutController::class,'deleteItem']);
+Route::get('/deleteItem/{id}/delete',[CheckoutController::class,'deleteItem']);
 
 Route::view('/successpage','SuccessPage');
 
@@ -55,7 +56,13 @@ Route::view('/successpage','SuccessPage');
  Route::controller(StripeCheckoutController::class)->group(function(){
   Route::get('stripe/{value}', 'stripe');
   Route::post('stripe/{value}', 'stripePost')->name('stripe.post');
-});
+ });
+
+
+ 
+Route::post('/saveRating',[HomeController::class,'saveRating']);
+
+Route::get('/detail/{id}',[HomeController::class,'detailFunction']);
 
 
 
@@ -100,15 +107,15 @@ Route::get('/mainAbout',[AllDataController::class,'aboutIndex'])->middleware(Val
 Route::get('/editAbout/{id}/edit',[AllDataController::class,'AboutShowPage']);
 Route::put('/SaveUpdateAbout/{id}/edit',[AllDataController::class,'UpdateAboutData']);
 Route::get('/deleteAbout/{id}/delete',[AllDataController::class,'deleteAbout']);
-
 Route::get('/ShowComments',[AllDataController::class,'ShowAllcomments']);
-
 Route::get('/deletecomment/{id}/delete',[AllDataController::class,'DeleteComment']);
+
 /*This area we selected for the Website which show on the screen */
-
 Route::get('/RecievedOrder',[AllDataController::class,'RecievedOrder'])->middleware(ValidUser::class);
-
 Route::get('/deleteRecOrd/{id}/delete',[AllDataController::class,'deleteRecOrd']);
+
+
+
 
 
 

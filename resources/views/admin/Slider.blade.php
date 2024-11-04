@@ -47,7 +47,7 @@
                                     <a href="{{ url ('editSlider/'.$show->id.'/edit')}}" class="text-decoration-none btn btn-success w-100">Edit</a>
                                 </td>
                                 <td>
-                                    <a href="{{ url ('deleteSlider/'.$show->id.'/delete')}}" class="text-decoration-none btn btn-danger w-75">Delete</a>
+                                    <a href="{{ url ('deleteSlider/'.$show->id.'/delete')}}" class="text-decoration-none btn btn-danger w-100">Delete</a>
                                 </td>
                             </tr>
                                 

@@ -9,12 +9,31 @@ use App\Models\CustomerOrder;
 use App\Models\comment;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Carbon\Carbon;
 
 class AllDataController
 {
     
     public function dashboard(){
-        return view('admin.Home');
+        $current_month_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->month)->count();
+        $current_1_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(1))->count();
+        $current_2_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(2))->count();
+        $current_3_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(3))->count();
+        $current_4_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(4))->count();
+        $current_5_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(5))->count();
+        $current_6_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(6))->count();
+        $current_7_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(7))->count();
+        $current_8_order = CustomerOrder::whereYear('created_at',Carbon::now()->year)->whereMonth('created_at',Carbon::now()->subMonth(8))->count();
+    
+
+
+        $charts = array( $current_month_order, $current_1_order, $current_2_order, $current_3_order,
+        $current_4_order,$current_5_order,$current_6_order,$current_7_order,$current_8_order);
+    
+    
+        return view('admin.Home',compact('charts'));
+
+        
     } 
 
     public function search(Request $req){
@@ -107,7 +126,7 @@ class AllDataController
 public function orderIndex(){
 
     $userid = Auth::id();
-    $orders = product::where('user_id',$userid)->with('user')->paginate(7);
+    $orders = product::where('user_id',$userid)->with('user')->paginate(6);
     return view('admin.OrderSave',compact('orders'));
 }
 /*****************************************************************************************************/
@@ -115,12 +134,14 @@ public function StoreOrder(Request $req){
     $req->validate([
         'name' => 'required',
         'price' => 'required',
-        'image' => 'required|mimes:jpg,png,jpeg,webp'
+        'image' => 'required|mimes:jpg,png,jpeg,webp',
+        'desc' => 'required'
     ]);
     $order = new product;
     $userid = Auth::id();
     $order->name = $req->name;
     $order->price = $req->price;
+    $order->desc = $req->desc;
     $order->user_id = $userid;
     
     if($req->hasfile('image')){
@@ -143,12 +164,14 @@ public function UpdateOrder(Request $req, string $id){
     $req->validate([
         'name' => 'required',
         'price' => 'required',
-        'image' => 'mimes:jpg,png,jpeg,webp'
+        'image' => 'mimes:jpg,png,jpeg,webp',
+        'desc' => 'required'
     ]);
 
     $order = product::find($id);
     $order->name = $req->name;
     $order->price = $req->price;
+    $order->desc = $req->desc;
     if($req->hasfile('image')){
         $destination = 'Products/'.$order->image;
         if(File::exists($destination)){

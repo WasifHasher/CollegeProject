@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <title>Document</title>
-    <style>
+  <style>
       .active {
             font-weight: bold;
             background-color: orange;
@@ -25,178 +25,196 @@
             
             border-radius: 50%;
           }
-
-@media screen and (max-width:1100px){
-    #togglerIcon{
-    margin-right: 10px;
-      color:wheat;
-    }
-    #cartdiv{
-  position: fixed;
-   right: 33%;
-  margin: 0px auto;
-  /* border:2px solid red; */
-}
-    /* /* #cart{
-      position: absolute;
-      
-      left:70%;
-      margin-right:20px;
-    }  */
-      #totalitem{
+          .cart{
+            width: 80%;
+            height: 80%;
+            background: white;
             position: absolute;
-            top:6%;
-            left:68%;
-            width: 25px;
-            height:25px;
- } 
-}
+            top: 10%;
+            left: 10%;
 
+          }
+          .darkcolor{
+            background: rgb(0,0,0,0.4);
+          }
 
-@media screen and (max-width:992px){
-  #togglerIcon{
-    margin-right: 10px;
-      color:wheat;
-    }
-    #cartdiv{
-  position:fixed;
-  right: 12%;
-
-  /* border:2px solid red; */
-}
-    /* /* #cart{
-      position: absolute;
-      
-      left:70%;
-      margin-right:20px;
-    }  */
-      #totalitem{
+          @media screen and (max-width:1100px){
+          #togglerIcon{
+            margin-right: 10px;
+            color:wheat;
+          }
+          #cartdiv{
+          position: fixed;
+          right: 33%;
+          margin: 0px auto;
+          /* border:2px solid red; */
+        }
+          /* /* #cart{
             position: absolute;
-            top:-55%;
-            left:13px;
-            width: 25px;
-            height:25px;
- } 
-}
-@media screen and (max-width:768px){
-  #togglerIcon{
-     
-      color:wheat;
-      margin-left:70%;
-      font-size: 15px;
-    }
-    #username{
-      font-size: 20px;
-      position:absolute;
-      left: 77%;
-      top: 2%;
-      position: fixed;
-      
-    }
+            
+            left:70%;
+            margin-right:20px;
+          }  */
+          #totalitem{
+                position: absolute;
+                top:6%;
+                left:68%;
+                width: 25px;
+                height:25px;
+            } 
+            }
+
+
+            @media screen and (max-width:992px){
+              #togglerIcon{
+                margin-right: 10px;
+                  color:wheat;
+                }
+                #cartdiv{
+              position:fixed;
+              right: 12%;
+
+              /* border:2px solid red; */
+            }
+        /* /* #cart{
+          position: absolute;
+          
+          left:70%;
+          margin-right:20px;
+        }  */
+          #totalitem{
+                position: absolute;
+                top:-55%;
+                left:13px;
+                width: 25px;
+                height:25px;
+          } 
+          }
+          @media screen and (max-width:768px){
+            #togglerIcon{
+              
+                color:wheat;
+                margin-left:70%;
+                font-size: 15px;
+              }
+              #username{
+                font-size: 20px;
+                position:absolute;
+                left: 77%;
+                top: 2%;
+                position: fixed;
+                
+              }
 
 
 
-}
+              }
 
-@media screen and (max-width:686px){
-  #togglerIcon{
-  
-      color:wheat;
-      margin-left:60%;
-      font-size: 15px;
-    }
-    #username{
-      font-size: 20px;
-      left: 70%;
-      top:15px;
-      position: absolute;
-      
-    }
+        @media screen and (max-width:686px){
+          #togglerIcon{
+          
+              color:wheat;
+              margin-left:60%;
+              font-size: 15px;
+            }
+            #username{
+              font-size: 20px;
+              left: 70%;
+              top:15px;
+              position: absolute;
+              
+            }
 
 
 
-}
+        }
 
-@media screen and (max-width:500px){
-  #togglerIcon{
-   
-      color:wheat;
-      margin-left:50%;
-      font-size: 15px;
-    }
-    #username{
-      font-size: 20px;
-      left: 46%;
-      top:15px;
-      position: absolute;
-      
-    }
+        @media screen and (max-width:500px){
+          #togglerIcon{
+          
+              color:wheat;
+              margin-left:50%;
+              font-size: 15px;
+            }
+            #username{
+              font-size: 20px;
+              left: 46%;
+              top:15px;
+              position: absolute;
+              
+            }
 
-    #cartdiv{
-  position:fixed;
-  right: 17%;
-  margin: 0px auto;
-  /* border:2px solid red; */
-}
-}
+            #cartdiv{
+          position:fixed;
+          right: 17%;
+          margin: 0px auto;
+          /* border:2px solid red; */
+        }
+        }
 
-@media screen and (max-width:400px){
-  #togglerIcon{
+        @media screen and (max-width:400px){
+          #togglerIcon{
 
-      color:wheat;
-      margin-left:45%;
-      font-size: 15px;
-    }
-    #username{
-      font-size: 20px;
-      left: 56%;
-      top:15px;
-      position: absolute;
-      
-    }
-#cartdiv{
-  position:fixed;
-  right: 28%;
-  margin: 0px auto;
-  /* border:2px solid red; */
-}
-    
-      #totalitem{
+              color:wheat;
+              margin-left:45%;
+              font-size: 15px;
+            }
+            #username{
+              font-size: 20px;
+              left: 56%;
+              top:15px;
+              position: absolute;
+              
+            }
+        #cartdiv{
+          position:fixed;
+          right: 20%;
+          margin: 0px auto;
+          /* border:2px solid red; */
+        }
+            
+          #totalitem{
+                position: absolute;
+                top:-55%;
+                left:13px;
+                width: 25px;
+                height:25px;
+          } 
+
+          @media screen and (max-width:360px){
+            #togglerIcon{
+
+                color:wheat;
+                margin-left:40%;
+                font-size: 15px;
+              }
+              #username{
+                font-size: 20px;
+                left: 56%;
+                top:15px;
+                position: absolute;
+                
+              }
+          #cartdiv{
             position: absolute;
-            top:-55%;
-            left:13px;
-            width: 25px;
-            height:25px;
- } 
+            right: 22%;
+            margin: 0px auto;
+            /* border:2px solid red; */
+          }
+          #totalitem{
+                position: absolute;
+                top:-55%;
+                left:13px;
+                width: 23px;
+                height:23px;
+          }
+          }
 
- @media screen and (max-width:360px){
-  #togglerIcon{
 
-      color:wheat;
-      margin-left:40%;
-      font-size: 15px;
+
+
+
     }
-    #username{
-      font-size: 20px;
-      left: 56%;
-      top:15px;
-      position: absolute;
-      
-    }
-#cartdiv{
-  position:fixed;
-  right: 33%;
-  margin: 0px auto;
-  /* border:2px solid red; */
-}
-    
-}
-
-
-
-
-
-}
     </style>
 </head>
 <body>
@@ -225,7 +243,7 @@
               <li class="nav-item px-2 {{ Request::is('contactPage') ? 'active' : ''}}">
                 <a class="nav-link text-white" href="/contactPage">Contact</a>
               </li>
-         
+              
 
              
               @if (Auth::check('name'))
@@ -282,6 +300,15 @@
         </div>
       </nav>
 
+      
+
+     
+
+        
+
+
+
+    
     
 </body>
 </html>

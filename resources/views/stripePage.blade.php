@@ -30,8 +30,8 @@
                     <form id='checkout-form' method='post' action="{{ route('stripe.post',$total) }}">   
                         @csrf    
 
-                        <strong>Name:</strong>
-                        <input type="input" class="form-control" name="name" placeholder="Enter Name">
+                        {{-- <strong>Name:</strong>
+                        <input type="input" class="form-control" name="name" placeholder="Enter Name"> --}}
 
                         <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
                         <br>

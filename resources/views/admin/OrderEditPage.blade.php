@@ -16,7 +16,7 @@
     <div class="container">
         <div class="row justify-content-center">
             
-            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:450px;">
+            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:500px;">
                 
                 <div class="d-flex">
                     <h3>Update Order</h3>
@@ -35,6 +35,10 @@
                     <div class="form-group mt-3">
                         <input type="text" name="price" placeholder="price" value="{{ old('price',$updateOrders->price)}}" class="form-Control w-100 p-2 border rounded @error('description') is-invalid @enderror">
                         @error('price')<span class="text-danger">{{ $message}}</span>@enderror
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="desc" placeholder="Description" value="{{ old('desc')}}" class="form-Control w-100 p-2 border rounded @error('desc') is-invalid @enderror">
+                        @error('desc')<span class="text-danger">{{ $message}}</span>@enderror
                     </div>
                     <div class="form-group mt-3">
                         <input type="file" name="image" onchange="document.querySelector('#image').src=window.URL.createObjectURL(this.files[0])" placeholder="Image" value="{{ old('image',$updateOrders->image)}}" class="form-Control w-100 p-2 border rounded @error('image') is-invalid @enderror">

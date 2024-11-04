@@ -2,12 +2,12 @@
 @section('mainContent')
 
 
-    <div class="container mt-5" style="height:500px;">
-        <div class="row">
+    <div class="container shadow mt-5" style="height:500px;width:77%;">
+        <div class="row justify-content-center">
     
 
+            <h3 class="mt-2">Cart Items</h3>
             <div class="col-12 col-md-11 col-lg-8 col-xl-8">
-                <h3>Cart Items</h3>
                 @if(Auth::check('name'))
                     
                 
@@ -46,22 +46,21 @@
                                 @endphp
                             </td>
                             <td><a href="{{ url ('deleteItem/'.$product->id.'/delete')}}" class="btn btn-danger text-decoration-none text-white"><i class="fa-solid fa-trash"></i></a></td>
-                       
+                            {{-- <td> <span onclick="modal()">Review</span></td> --}}
+                           
+                        
                         </tr>
-                        @endforeach    
-                
+                        @endforeach 
                     </tbody>
                 </table>
 
                                     @if ($total)
-                                    <a href="{{url('stripe',$total)}}" class="btn btn-danger float-center float-md-end fw-bold fs-4  text-white  text-decoration-none" id="checkout"  style="margin-right:30px;">Checkout : {{$total}}</a>
+                                    <a href="{{url('stripe',$total)}}" class="btn btn-danger float-center float-md-end fw-bold fs-5  text-white  text-decoration-none" id="checkout"  style="margin-right:30px;border-radius: 30px;">Checkout : {{$total}}</a>
                                     @else
-                                    <a href="#" class="btn btn-danger float-end text-white text-decoration-none">Checkout : {{$total}}</a>
+                                    <a href="#" class="btn btn-light float-end text-white text-decoration-none" style="border-radius: 30px;">Checkout : {{$total}}</a>
 
                                     @endif
-                            
-                                
-                                                       
+                                    
                 
                 @else
 
@@ -73,8 +72,7 @@
         </div>
     </div>
 
-
-
+ 
 
 
 @endsection

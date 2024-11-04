@@ -20,9 +20,6 @@ class OnWebsite
         if(Auth::user()->usertype == 'user'){
             return $next($request);
         }
-        // elseif(Auth::user()->usertype == 'user'){
-        //     return redirect('/');
-        // }
         else{
             return view('Login');
         }

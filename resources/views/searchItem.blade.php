@@ -3,39 +3,48 @@
 
 
 <div class="container mt-5">
-    <div class="row">
-      <h3 class="text-left text-uppercase">Order Items</h3>
+    <div class="row justify-content-center ">
+      <h3 class="text-center text-uppercase">Search Items</h3>
 
       
       
-      @foreach ($search as $order)
-      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-2 mt-xl-5 text-center shadow bg-white border border-primary rounded mx-3 my-4 py-3 " style="height: 280px;">
+      @foreach ($search as $product)
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3 mt-xl-5 text-center shadow bg-white rounded mx-3 my-4 py-3 relative" style="max-height: 300px;">
         
-        
-          <img src="Products/{{($order->image)}}" style="height:90px;width:90px;border-radius:50px;">
-          <h4 class="pt-2">{{$order->name}}</h4>
-          <p>Rs: {{$order->price}}</p>
-        
-          {{-- <a href="Checkout/{{$order->id}}" class="w-100 btn btn-primary">Add to Card</a> --}}
+      
+      
+        <a href="{{ url('detail/'.$product->id)}}" class="text-decoration-none">
+          <img src="Products/{{($product->image)}}" class=""  style="height:200px;width:100%;">
+         <div class="w-100">
+          <h4 class="pt-2 float-start">{{$product->name}}</h4>
+          <p class="pt-2 float-end" style="margin-left:0%;">Rs: {{$product->price}}</p>
+        </div>
+        {{-- <div class="row">
+          <div class="rating">
+                 @for ($i = 1; $i <= $ratingvalue; $i++)
+                     <span class="fa fa-star text-warning"></span>
+                 @endfor
 
+                 @for ($j = $ratingvalue+1; $j <= 5; $j++)
+                 <span class="fa fa-star "></span> 
+                 @endfor
+  
+                 <span>({{number_format($ratingvalue,2)}})</span>
+          </div>
+      </div> --}}
 
-        <form action="/addToCart" method="POST" enctype="multipart/form-data">
-          @csrf
-          <input type="hidden" name="product_id" value="{{$order->id}}">
-          <input type="hidden" name="name" value="{{$order->name}}">
-          <input type="hidden" name="price" value="{{$order->price}}">
-          <input type="hidden" name="image" value="{{$order->image}}">
-          <div><input type="number" name='qty' placeholder="0" class="w-50 mb-2 "></div>
+        </a>
           
-          <button class="btn btn-primary w-100">Add to Cart</button>
-        </form>
 
 
-         
+       
       </div>
+
+
+
       @endforeach
-
-
+     
+         
 
     </div>
   </div>

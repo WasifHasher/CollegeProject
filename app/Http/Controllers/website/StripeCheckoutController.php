@@ -91,6 +91,8 @@ class StripeCheckoutController
         return view('StripeCheckoutPage',compact('products'));
     }
 
+ 
+
     public function SaveData(Request $request){
 
 

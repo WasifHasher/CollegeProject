@@ -5,18 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class cart extends Model
+class rating extends Model
 {
     use HasFactory;
 
-    protected $table = 'carts';
-    public $timestamps = false;
+    protected $table = 'ratings';
+    public $timestamps = true;
     protected $guarded = [];
 
-    public function user(){
-        return $this->belongsTo(user::class);
-       }
-
-      
+    public function product(){
+        return $this->hasMany(product::class);
+    }
 
 }

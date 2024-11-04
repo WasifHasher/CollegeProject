@@ -16,11 +16,9 @@
         <div class="row justify-content-center">
 
             
-            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:300px;">
+            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:380px;">
                 
-                
-               
-                
+                <h2>Add Order</h2>
                 
                 <form action="/SaveOrder" method="POST" enctype="multipart/form-data">
                     @csrf
@@ -32,6 +30,10 @@
                     <div class="form-group mt-3">
                         <input type="text" name="price" placeholder="price" value="{{ old('price')}}" class="form-Control w-100 p-2 border rounded @error('price') is-invalid @enderror">
                         @error('price')<span class="text-danger">{{ $message}}</span>@enderror
+                    </div>
+                    <div class="form-group mt-3">
+                        <input type="text" name="desc" placeholder="Description" value="{{ old('desc')}}" class="form-Control w-100 p-2 border rounded @error('desc') is-invalid @enderror">
+                        @error('desc')<span class="text-danger">{{ $message}}</span>@enderror
                     </div>
                     <div class="form-group mt-3">
                         <input type="file" name="image" placeholder="Image" value="{{ old('image')}}" class="form-Control w-100 p-2 border rounded @error('image') is-invalid @enderror">
