@@ -52,6 +52,8 @@
                  
                       
                         <li class="list-unstyled py-2"><a href="/RecievedOrder" class="py-4  text-decoration-none"><span class="{{ Request::is('RecievedOrder') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>Order({{ \App\Models\CustomerOrder::count() }})</span></a></li>
+                      
+                        <li class="list-unstyled py-2"><a href="/owner" class="py-4  text-decoration-none"><span class="{{ Request::is('owner') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>Owner_Info</span></a></li>
 
                         <li class="list-unstyled py-2 "><a href="/ShowComments" class="py-4  text-decoration-none"><span class="{{ Request::is('ShowComments') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-phone pe-3 ps-2"></i>Comment({{ \App\Models\comment::count() }})</span></a></li>
 

@@ -13,32 +13,47 @@
             margin-top: 10px;
             right: 13%;
         }
+        #emailLogin{
+            background:rgba(0,0,0,0.1) !important;
+            border: none;
+            border-bottom:1px solid white;
+            color:white;
+            width: 93%;
+        }
+        #password{
+            width: 110%;
+            background:rgba(0,0,0,0.1) !important;
+            border: none;
+            border-bottom:1px solid white;
+            color:white;
+        }
     </style>
 </head>
-<body style="background:#f4f6f6;">
+<body style="background-image: url('Products/1.png'); background-size: cover; background-repeat: no-repeat;">
+
 
         <div class="container mt-5">
             @if (session('status'))
                 <div class="alert alert-success">{{ session('status')}}</div>    
             @endif
-            <div class="row justify-content-center">
+            <div class="row " style="background: rgba(0,0,0,0.7);">
                 
-                <div class="col-4 border border-primary shahow bg-white rounded mt-3 px-5" style="height:350px">
-                    <h3 style="margin-left:10px;width:320px" class="mt-5 btn btn-danger fs-4">Login Form</h3>
-                        <form action="/SaveLogin" method="POST" class="mt-3">
+                <div class="col-4  offset-1 shahow rounded mt-3 " style="height:550px;z-index:1;">
+                    <h3 style="margin-left:10px;width:320px;" class="mt-5 py-2 text-white text-center fs-4">Login Form</h3>
+                        <form action="/SaveLogin" method="POST" class="mt-3 z-5">
                             @csrf
 
                             
 
-                            <div class="form-group mt-3 mx-2">
-                                <input type="text" class="Form-Control w-100 p-2 ps-3" style="border-radius:30px;" name="email" placeholder="email">
+                            <div class="form-group mt-4 mx-2">
+                                <input type="email" class="Form-Control  p-2 ps-3" id="emailLogin" name="email" placeholder="Email">
                                 @error('email')<div class="text-danger">{{ $message }}</div>@enderror
                             </div>
 
-                            <div class="form-group mt-3 mx-2 d-flex w-100">
-                                <input type="password" class="Form-Control w-100 p-2 ps-3" id="password" style="border-radius:30px;" name="password" placeholder="password">
+                            <div class="form-group mt-3 mx-2 d-flex ">
+                                <input type="password" class="Form-Control w-100 p-2 ps-3" id="password" name="password" placeholder="password">
                                 
-                                <img src="{{asset('Products/hide.png')}}" alt="" id="redeye" width="30px" height="25px">
+                                <i class="fa-regular fa-eye-slash text-white fs-4" id="redeye"></i>
                                 @error('password')<div class="text-danger">{{ $message }}</div>@enderror
                             </div>
 
@@ -50,9 +65,11 @@
                         <div class="mt-3 text-center">
                             <span class="">_____________<a href="/Websiteregister"  style="color:gray;" class="text-decoration-none">Register? Sign up</a>_____________</span>
                           
-                            
-
                         </div>
+                </div>
+
+                <div class="col-5 offset-1 mt-3" style="background-color: rgba(0,0,0,0.4)">
+                    <img src="Products\burger_8.webp"  class="h-100 w-100"  alt="">
                 </div>
             </div>
         </div>
@@ -66,12 +83,11 @@
             eyeicon.onclick = function(){
                 if(password.type == 'password'){
                     password.type = 'text';
-                    eyeicon.src = "{{ asset('Products/eye1.png') }}";
+                    eyeicon.classList.toggle("fa-eye");
                     
-
                 }else{
                     password.type = 'password';
-                    eyeicon.src = "{{ asset('Products/hide.png') }}";
+                    eyeicon.classList.toggle("fa-eye-slash");
 
                 }
             }

@@ -5,18 +5,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+   
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+
+
     <title>Document</title>
    
  <style>
                 
-                    #about:nth-child(even) {
+                    /* #about:nth-child(even) {
                         display: flex;
                         flex-direction: row-reverse;
+            } */
+
+            #aboutBox{
+                width: 290px;
+                height: 500px !important;
+                
+            }
+            #aboutBox:hover{
+                width: 300px;
+                height: 520px;
             }
 
+            #aboutDesc{
+                font-family: "Averia Sans Libre", sans-serif;
+                font-size: 15px;
+                font-style: normal;
+            }
+
+            #about-image{
+                border-radius: 10px;
+                margin-top: 10px;
+                width: 85%;
+                height: 130px;
+            }
+
+            #about-title{
+                /* font-family: "Pacifico", serif;
+                 font-weight: 400;
+                 font-style: normal; */
+
+                font-family: "Noto Serif", serif;
+                font-optical-sizing: auto;
+                font-weight: <weight>;
+                font-style: normal;
+                font-variation-settings:
+                    "wdth" 100;
+                width:250px;
+                padding-left:15px;
+            }
                 #description {
                     font-family: "Playpen Sans", cursive;
                     font-optical-sizing: auto;
@@ -133,7 +177,56 @@
                 color: #c59b08;
             }
 
-            
+            #Product_cart{
+                max-height: 500px;
+                width: 280px;
+                border-radius: 10px;
+
+            }
+            #Product_cart:hover {
+                max-height: 520px;
+                width: 290px;
+               
+            }
+
+            #ProjectImage{
+                width: 50%;
+                height:110px;
+                border-radius:50%;
+                position: relative;
+                top: 19%;
+                text-align: center;
+
+            }
+            #desc{
+                font-family: "Averia Sans Libre", sans-serif;
+                font-size: 15px;
+                font-style: normal;
+            }
+
+            .aboutText{
+                opacity: 0;
+                font-family: "PT Serif", serif;
+                font-weight: 400;
+                font-style: italic;
+            }
+            .aboutText .animated{
+                opacity: 1;
+            }
+
+            #headingTwo{
+                opacity: 0;
+            }
+            #headingTwo .animated{
+                opacity: 1;
+            }
+            #ProfileImage{
+                opacity: 0;
+            }
+            #ProfileImage .animated{
+                opacity: 1;
+            }
+            */
             
                 @media screen and (max-width:992px){
 
@@ -231,7 +324,8 @@
 
      <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
- 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> --}}
    
  <script>
 
@@ -243,10 +337,71 @@
         }
 
 
-       
+        // var waypoint = new Waypoint({
+        // element: document.getElementById('target-element'),
+        // handler: function(direction) {
+        //     console.log('Triggered at 50px above the target element');
+        // },
+        // offset: '50%' // Trigger when the element is halfway into the viewport
+        // });
+
+      
+        $(document).ready(function () {
+            $('.aboutText').waypoint(function (direction) {
+                $('.aboutText').addClass('animated fadeInDown'); // Ensure the animation class exists
+            }, {
+                offset: '50%' // Optional: Trigger when the element is 50% into the viewport
+            });
+
+            $('#headingTwo').waypoint(function (direction) {
+                $('#headingTwo').addClass('animated fadeInLeft'); // Ensure the animation class exists
+            }, {
+                offset: '50%' // Optional: Trigger when the element is 50% into the viewport
+            });
+
+            $('#ProfileImage').waypoint(function (direction) {
+                $('#ProfileImage').addClass('animated fadeInRight'); // Ensure the animation class exists
+            }, {
+                offset: '50%' // Optional: Trigger when the element is 50% into the viewport
+            });
 
 
-   
+            $('.increament').click(function(e){
+                e.preventDefault();
+
+                var increament = $('.qty-name').val();
+                var value = parseInt(increament,10);
+                value = isNaN(value) ? '0' :value;
+                if(value < 10){
+                    
+                    value++;
+                    $('.qty-name').val(value);
+                }
+            });
+
+            $('.decreament').click(function(e){
+                e.preventDefault();
+
+                var decreament = $('.qty-name').val();
+                var value = parseInt(decreament,10);
+                value = isNaN(value) ? '0' :value;
+                if(value > 0){
+                    
+                    value--;
+                    $('.qty-name').val(value);
+                }
+            });
+
+
+
+
+
+
+
+        });
+
+
+        
 
 
 

@@ -10,6 +10,8 @@
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 3"></button>
+    <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 4"></button>
   </div>
   <div class="carousel-inner" >
 
@@ -22,14 +24,14 @@
       <img src="Products/{{($item->image)}}" class="d-block w-100 z-n1" id="grayimg"  alt="Slide 1"  style="height:400px;">
     
       <div class="carousel-caption mb-5  " >
-        
-        <h5 class="fs-1 fw-bolder" id="title">{{$item->title}}</h5>
+       
+      <h5 class="fs-1 fw-bolder" id="title">  <i class="fa-solid fa-layer-group pe-3 text-white" style="font-size: 7rem;"> </i>{{$item->title}}</h5>
         <p class="fs-5  pb-5 mb-5" id="description">{{$item->description}}</p>
     
       </div>
     </div>
    
-    
+    {{-- <i class="fa-solid fa-burger"></i> --}}
     @endforeach 
     
    
@@ -66,21 +68,31 @@
 
 
 
-  <div class="container-fluid mt-5">
-    <div class="row justify-content-center" style="height: 100%;">
-      <h3 class="text-center text-uppercase" id="orderItems">Product Items</h3>
+  <div class="container-fluid ">
+    <div class="row justify-content-center " style="height: 100%;margin:5%;">
+      <h3 class="text-center text-uppercase">Product Items</h3>
 
       @foreach ($products as $product)
-      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3 mt-xl-5 text-center shadow bg-white rounded mx-3 my-4 py-3 relative" style="max-height: 300px;">
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5 ms-3 mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
         
       
       
-        <a href="{{ url('detail/'.$product->id)}}" class="text-decoration-none">
-          <img src="Products/{{($product->image)}}" class=""  style="height:200px;width:100%;">
-         <div class="w-100">
-          <h4 class="pt-2 float-start">{{$product->name}}</h4>
-          <p class="pt-2 float-end" style="margin-left:0%;">Rs: {{$product->price}}</p>
+        <div class="w-100 ">
+          <h4 class="pt-2 ps-3 float-start">{{$product->name}}</h4>
+          {{-- <p class="pt-3 pe-2 float-end">Rs: {{$product->price}}</p> --}}
         </div>
+        <div style="margin-top: 25%;">
+
+          <img src="Products/{{($product->image)}}" id="ProjectImage">
+          <br>
+        </div>
+        <p class=" pe-2 float-end">Rs: {{$product->price}}</p>
+         
+        <br>
+        <div class="mt-3">
+          <p id="desc" class="px-2">{{$product->desc}}</p>
+        </div>
+        <a href="{{ url('detail/'.$product->id)}}" class="text-decoration-none btn btn-danger mb-3">Order Now</a>
         {{-- <div class="row">
           <div class="rating">
                  @for ($i = 1; $i <= $ratingvalue; $i++)
@@ -95,22 +107,13 @@
           </div>
       </div> --}}
 
-        </a>
-          
 
-
-       
       </div>
 
 
 
       @endforeach
      
-           
-
-            
-           
-
     </div>
   </div>
 
@@ -121,17 +124,32 @@
 
   <div class="container mt-5">
     <div class="row">
-      <div class="col-12 col-md-6 col-lg-6 col-xl-6 aboutImage">
-        <h2 id="headingTwo">Heading about Owner</h2>
-        <p class="mt-5" >Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur magni exercitationem voluptatibus, repellat numquam animi laboriosam corrupti possimus minima blanditiis odio ipsam consequatur ea saepe dolores cumque ab libero facilis in. Reiciendis laudantium architecto praesentium saepe molestias sapiente dolorum, corrupti inventore accusantium placeat, nostrum laboriosam id vel ex earum illo..</p>
+
+      @foreach ($owner as $item)
+          
+    
+      <div class="col-12 col-md-6 col-lg-6 col-xl-6">
+        <h2 class="text-uppercase" id="headingTwo">{{$item->heading}}</h2>
+        <p class="mt-3  fs-4 aboutText" >{{$item->info}}</p>
       </div>
       <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-        <img src="Products/profile 1.jpg" class="rounded" width="100%" height="350px;">
+        <img src="Products/{{($item->image)}}" class="rounded" id="ProfileImage" width="100%" height="350px;">
       </div>
+      @endforeach
     </div>
   </div>
 
+  <div class="container mt-5">
 
+    <div class="row" style="height: 500px;">
+      
+      <img src="Products/4.png" alt="" class="h-100 rounded">
+      
+    </div>
+  </div>
+  
+
+  
 
 
 @endsection

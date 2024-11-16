@@ -17,12 +17,12 @@ class ValidUser
     public function handle(Request $request, Closure $next): Response
     {
 
-        if(Auth::user()->usertype == 'admin'){
+        if(Auth::check() && Auth::user()->usertype == 'admin'){
             return $next($request);
         }
 
         else{
-            return redirect()->route('/login');
+            return redirect('/login');
         }
 
     }

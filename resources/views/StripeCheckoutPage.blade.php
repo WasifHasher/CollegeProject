@@ -2,16 +2,16 @@
 @section('mainContent')
 
 
-    <div class="container shadow mt-5" style="height:500px;width:77%;">
-        <div class="row justify-content-center">
+    <div class="container shadow mt-5 fadeUp" style="height: 500px;border-radius: 10px;">
+        <div class="row justify-content-center " >
     
 
-            <h3 class="mt-2">Cart Items</h3>
-            <div class="col-12 col-md-11 col-lg-8 col-xl-8">
+            <h3 class="mt-2 text-black  ">Cart Items</h3>
+            <div class="col-12 col-md-11 col-lg-8 col-xl-8 ">
                 @if(Auth::check('name'))
                     
                 
-                  <table class="table bordered" >
+                  <table class="table bordered ">
                     <tr>
                         <thead>
                             <th>id</th>

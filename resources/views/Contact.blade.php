@@ -3,7 +3,12 @@
 
     <div class="container mt-5">
         <div class="row">
-            <div class="col-xl-8 ">
+            <div class="row" style="height: 250px;">
+      
+                <img src="Products/3.png" alt="" class="h-100 rounded">
+                
+              </div>
+            <div class="col-xl-8 mt-5">
                 
 
                 <form action="/SubmitComment" method="POST">

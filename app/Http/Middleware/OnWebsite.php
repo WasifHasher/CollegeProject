@@ -16,12 +16,10 @@ class OnWebsite
      */
     public function handle(Request $request, Closure $next): Response
     {
-
-        if(Auth::user()->usertype == 'user'){
+        if (Auth::check() && Auth::user()->usertype == 'user') {
             return $next($request);
-        }
-        else{
-            return view('Login');
+        } else {
+            return redirect('WebsiteLogin'); // Redirect to login if not authenticated or user type is not 'user'
         }
     }
 }

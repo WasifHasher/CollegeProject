@@ -20,6 +20,7 @@
   use App\Models\comment;
   use App\Models\rating;
   use \Stripe\Stripe;
+  use App\Models\owner;
   //Below are the middleware
   use App\Http\Middleware\ValidUser;
   use App\Http\Middleware\OnWebsite;
@@ -115,10 +116,14 @@ Route::get('/RecievedOrder',[AllDataController::class,'RecievedOrder'])->middlew
 Route::get('/deleteRecOrd/{id}/delete',[AllDataController::class,'deleteRecOrd']);
 
 
+Route::view('/show_owner_page','admin.OwnerAddPage');
 
+Route::get('/owner',[AllDataController::class,'show_owner_data']);
 
+Route::post('/Save_owner_Record',[AllDataController::class,'Add_owner_record']);
 
-
-
+Route::get('/owner/{id}/edit',[AllDataController::class,'Show_update_Owner_page_Record']);
+Route::put('/Save_Update_Owner_Record/{id}/edit',[AllDataController::class,'Save_update_Record_on_Database']);
+Route::get('/owner/{id}/delete',[AllDataController::class,'Delete_Owner_Record']);
 
 

@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\About;
 use App\Models\Cart;
 use App\Models\Rating;
+use App\Models\owner;
 use App\Models\comment;
 use Illuminate\Http\Request;
 
@@ -26,7 +27,8 @@ class HomeController
     public function home(){
         
     $gets = Slider::all();
-    $products = product::get()->take(10);
+    $products = product::get()->take(12);
+    $owner = owner::get();
 
     // $prod_id = product::select('id')->get();
 
@@ -41,7 +43,7 @@ class HomeController
     // }
 
     // return view('home',['gets' => $get],['products' =>$products],['ratingvalue' => $ratingvalue]);
-    return view('home',compact('gets','products'));
+    return view('home',compact('gets','products','owner'));
     }
 
 
@@ -96,6 +98,10 @@ class HomeController
 
 
     public function addtocart(Request $req){
+
+        $req->validate([
+            'qty' => 'required',
+        ]);
 
         $cart = new cart;
 

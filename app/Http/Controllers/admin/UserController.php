@@ -50,9 +50,9 @@ class UserController
             return redirect('/login')->with('status','Please check your username and password.');
         }
         
-        else{
-            return redirect('/login')->with('status','Please You are not allowed for this site.');
-        }
+        // else{
+        //     return redirect('/login')->with('status','Please You are not allowed for this site.');
+        // }
     }
 
     public function Logout(){

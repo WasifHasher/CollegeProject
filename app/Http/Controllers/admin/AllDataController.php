@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\about;
 use App\Models\CustomerOrder;
 use App\Models\comment;
+use App\Models\owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -326,6 +327,104 @@ public function deleteRecOrd(int $id){
     return redirect('/RecievedOrder')->with('status','Your Order is Successfully Deleted.');
 
 }
+
+// This section we making for Owner information
+  
+public function show_owner_data() {
+    $ownerdata = owner::get(); // Fetches all data from the 'owners' table
+    return view('admin.owner', compact('ownerdata')); // Passes data to the view
+}
+
+public function Add_owner_record(Request $req){
+
+    $req->validate([
+        'heading' => 'required',
+        'info' => 'required',
+        'image' => 'required|mimes:jpg,png,jpeg,webp',
+        
+    ]);
+
+    $owner = new owner;
+
+    $userid = Auth::id();
+
+    $owner->heading = $req->heading;
+    $owner->info = $req->info;
+    $owner->user_id = $userid;
+
+    if($req->hasfile('image')){
+
+        $file = $req->file('image');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time(). '.' .$ext;
+        $file->move('Products/',$filename);
+        $owner->image = $filename;
+
+    }
+    $owner->save();
+    
+     return redirect('/owner');
+
+    
+}
+
+ public function Show_update_Owner_page_Record(string $id){
+    $show_update_record = owner::find($id);
+    return view('admin.Owner_Update_Page',compact('show_update_record'));
+ }
+
+ public function Save_update_Record_on_Database(Request $req, string $id) {
+    // Validate the request
+    $req->validate([
+        'heading' => 'required|string|max:255',
+        'info' => 'required|string',
+        'image' => 'nullable|mimes:jpg,png,jpeg,webp|max:2048', // Make image optional
+    ]);
+
+    // Fetch the existing owner record or fail
+    $owner = Owner::findOrFail($id);
+
+    // Retrieve the logged-in user's ID
+    $userid = Auth::id();
+
+    // Update owner fields
+    $owner->heading = $req->heading;
+    $owner->info = $req->info;
+    $owner->user_id = $userid;
+
+    // Check if an image is uploaded
+    if ($req->hasFile('image')) {
+        // Delete the old image if it exists
+        if ($owner->image && file_exists(public_path('Products/' . $owner->image))) {
+            unlink(public_path('Products/' . $owner->image));
+        }
+
+        // Process the new image
+        $file = $req->file('image');
+        $filename = time() . '.' . $file->getClientOriginalExtension();
+        $file->move(public_path('Products/'), $filename);
+        $owner->image = $filename;
+    }
+
+    // Save the updated record to the database
+    $owner->save();
+
+    // Redirect back with a success message
+    return redirect('/owner')->with('success', 'Record updated successfully!');
+}
+
+public function Delete_Owner_Record(string $id){
+
+    $deleteAbout = owner::find($id);
+    $image_path = public_path('Products/'.$deleteAbout->image);
+    if(file_exists($image_path)){
+        unlink($image_path);
+    }
+    $deleteAbout->delete();
+    return redirect('/owner')->with('status','Your Data is Successfully Deleted.');
+
+}
+
 
 
 

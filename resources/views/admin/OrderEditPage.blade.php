@@ -37,7 +37,7 @@
                         @error('price')<span class="text-danger">{{ $message}}</span>@enderror
                     </div>
                     <div class="form-group mt-3">
-                        <input type="text" name="desc" placeholder="Description" value="{{ old('desc')}}" class="form-Control w-100 p-2 border rounded @error('desc') is-invalid @enderror">
+                        <input type="text" name="desc" placeholder="Description" value="{{ old('desc',$updateOrders->desc)}}" class="form-Control w-100 p-2 border rounded @error('desc') is-invalid @enderror">
                         @error('desc')<span class="text-danger">{{ $message}}</span>@enderror
                     </div>
                     <div class="form-group mt-3">

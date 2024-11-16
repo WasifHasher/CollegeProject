@@ -9,7 +9,7 @@
             @endif
 
             <div class="col-12 col-sm-12 col-md-6 col-lg-6 col-xl-6  h-50">
-                <img src="{{ asset('Products/'.$details->image) }}" alt="" class="w-100  rounded" >
+                <img src="{{ asset('Products/'.$details->image) }}" alt="" class="w-100  rounded" style="width: 100%;height:400px;" >
             </div>
 
 
@@ -46,7 +46,12 @@
                 <input type="hidden" name="name" value="{{$details->name}}">
                 <input type="hidden" name="price" value="{{$details->price}}">
                 <input type="hidden" name="image" value="{{$details->image}}">
-                <div><input type="number" name='qty' placeholder="0"  class="control-form w-25 py-1 mb-2 rounded"></div>          
+                <div >
+                    <button class="border border-secondary rounded text-black fw-bolder px-3 py-1 decreament" >-</button>
+                    <input type="number" name='qty' placeholder="0" style="width: 100px;"  class="qty-name py-1 mb-2 border border-none rounded">
+                    <button class="border border-secondary rounded text-black px-3 fw-bolder py-1 increament" >+</button>
+                    
+                </div>          
                 <button class="btn btn-primary mt-2 w-100">Add to Cart</button>
                 </form> 
 
@@ -100,3 +105,8 @@
 
 
 @endsection
+
+
+
+
+
