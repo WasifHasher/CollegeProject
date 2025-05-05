@@ -1,3 +1,9 @@
+@php
+     use App\Models\category;
+      $category = category::get();
+
+@endphp
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,7 +22,7 @@
         <div class="row justify-content-center">
 
             
-            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:380px;">
+            <div class="col-6 mt-5 border border-primary shadow p-3 rounded bg-white py-4 me-2" style="height:450px;">
                 
                 <h2>Add Order</h2>
                 
@@ -35,6 +41,19 @@
                         <input type="text" name="desc" placeholder="Description" value="{{ old('desc')}}" class="form-Control w-100 p-2 border rounded @error('desc') is-invalid @enderror">
                         @error('desc')<span class="text-danger">{{ $message}}</span>@enderror
                     </div>
+
+                    
+                    
+                    <div class="form-group mt-3">
+                        <select name="category" id="" class="w-100 py-2 border border-gray">
+                            <option value="">Select</option>
+                            @foreach ($category as $item)
+                            <option value="{{$item->id}}">{{$item->category_names}}</option>
+                            @endforeach
+                          
+                        </select>
+                    </div>
+
                     <div class="form-group mt-3">
                         <input type="file" name="image" placeholder="Image" value="{{ old('image')}}" class="form-Control w-100 p-2 border rounded @error('image') is-invalid @enderror">
                         @error('image')<span class="text-danger">{{ $message}}</span>@enderror

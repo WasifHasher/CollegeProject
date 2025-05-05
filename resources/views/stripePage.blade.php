@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="form-group mt-3">
-                            <input type="text" name="Cus_email"  class="Form-Control w-100 py-2 rounded" placeholder="Email" >
+                            <input type="text" name="Cus_email"  class="Form-Control w-100 py-2 rounded" placeholder="Email/ Optional" >
                         </div>
 
                         <div class="form-group mt-3">

@@ -1,6 +1,9 @@
 @extends('frontPage')
 @section('mainContent')
-
+@php
+    use App\Models\category;
+    $category = category::get();
+@endphp
   <div class="container mt-3">
     <div class="row justify-content-center">
       <div class="col-11 col-md-10 col-lg-8 col-xl-7">
@@ -10,6 +13,19 @@
             <input type="text" name="query" class="form-Control w-100 ps-2 border border-none shadow" id="input" placeholder="Searching...">
             <button class="text-white shadow" id="orderbtnSearch"><i class="fa-solid fa-magnifying-glass px-2 fs-5"></i></button>
           </div>
+
+          @php
+          $activeCategory = '';
+      @endphp
+
+      <div class="mt-4" style="margin-left: 10%;">
+        @foreach ($category as $item)
+            <a href="{{ url('category/' . $item->id) }}" 
+               class="text-black fs-5 border border-gray p-2 m-1 text-decoration-none {{ $activeCategory == $item->id ? 'active' : '' }}">
+                {{ $item->category_names }}
+            </a>
+        @endforeach
+     </div>
         </form>
       </div>
     </div>

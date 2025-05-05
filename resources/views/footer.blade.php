@@ -56,7 +56,7 @@
                 <h3 class="text-white fw-bold">CONTACT US</h3>
                 <h6 class="pt-2 text-white"><i class="fa-duotone fa-solid fa-phone  pe-2"></i>923081491748</h6>
                 <h6 class="pt-2 text-white"><i class="fa-duotone fa-solid fa-phone  pe-2"></i>923305538440</h6>
-                <h6 class="pt-2 text-white"><span>whatsapp : </span>923305538440</h6>
+                <h6 class="pt-2 text-white"><i class="fa-brands fa-whatsapp fs-5 pe-2"></i>923305538440</h6>
                 <h6 class="pt-2 text-white"><i class="fa-solid fa-envelope pe-2"></i>wasifhasher@gmail.com</h6>
             </div>
             

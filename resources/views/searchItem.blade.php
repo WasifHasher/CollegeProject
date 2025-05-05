@@ -5,11 +5,12 @@
 <div class="container mt-5">
     <div class="row justify-content-center ">
       <h3 class="text-center text-uppercase">Search Items</h3>
-
-      
-      
+   
+     
       @foreach ($search as $product)
+      
       <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5 ms-3 mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
+        
         
       
       

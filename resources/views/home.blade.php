@@ -1,3 +1,7 @@
+@php
+    use App\Models\category;
+    $category = category::get();
+@endphp
 @extends('frontPage')
 @section('mainContent')
 
@@ -25,7 +29,7 @@
     
       <div class="carousel-caption mb-5  " >
        
-      <h5 class="fs-1 fw-bolder" id="title">  <i class="fa-solid fa-layer-group pe-3 text-white" style="font-size: 7rem;"> </i>{{$item->title}}</h5>
+      <h5 class="fs-1 fw-bolder" id="title">  <i class="fa-solid fa-layer-group pe-3 text-white" style="font-size: 4rem;"> </i>{{$item->title}}</h5>
         <p class="fs-5  pb-5 mb-5" id="description">{{$item->description}}</p>
     
       </div>
@@ -44,9 +48,22 @@
        
 
           <div class="form-group d-flex w-100">
-            <input type="text" name="query" class="form-Control w-100 ps-2 border border-none" id="input" placeholder="Searching...">
+            <input type="text" name="query" class="form-Control w-100 ps-2 border border-none" id="input" placeholder="Searching Burger/Pizza/Shawarma/Drink">
             <button class="text-white" id="btnSearch"><i class="fa-solid fa-magnifying-glass px-2 fs-5"></i></button>
           </div>
+          @php
+              $activeCategory = '';
+          @endphp
+
+          <div class="mt-3" style="margin-left: 15%;">
+            @foreach ($category as $item)
+            <a href="{{ url('category/' . $item->id) }}" 
+                   class="text-white pe-2 text-decoration-none {{ $activeCategory == $item->id ? 'active' : '' }}">
+                    {{ $item->category_names }}
+                </a>
+            @endforeach
+         </div>
+        
       
         </form>
       
@@ -63,17 +80,48 @@
 </div>
 
 @if(session('status'))
-<div class="alert alert-success mt-4">{{session('status')}}</div>
+<div class="alert alert-success d-flex text-center justify-content-center mt-4" data-dismiss="alert">{{session('status')}}
+  <a class="nav-link text-black ms-3"  href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5" ></i></a>
+  <span class="fw-bold fs-5" style="position:relative;left:43%;top;5%;">X</span> </div>
 @endif
+
+{{-- <h1>Welcome, {{ session('name') }}</h1>
+<h1>Welcome, {{ session('id') }}</h1> --}}
+
+@php
+    $images = ['1731664038.webp', '1731664095.webp', '1731665029.webp','1731731048.webp','1731731048.webp','1732181516.webp']; // Add more if needed
+    $index = floor((time() / 600) % count($images)); // Change every 600 seconds (10 minutes)
+    $currentImage = $images[$index];
+@endphp
+
+@if(Auth::check())
+    <div id="adOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+        background-color: rgba(0, 0, 0, 0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
+        
+        <div id="adBox" class="position-absolute top-25 w-sm-100 w-md-50 w-lg-50 w-xl-50  h-75" style="padding: 10px; border-radius: 10px;">
+            {{-- Close button --}}
+            <button onclick="document.getElementById('adOverlay').style.display='none'" 
+                style="position: absolute; top: 10px; right: 15px; color: white; background: transparent; border: none; font-size: 28px; cursor: pointer;">&times;
+            </button>
+
+            {{-- Rotating Product Image --}}
+            <a href="/product-page-link">
+                <img src="{{ asset('Products/' . $currentImage) }}" class="w-100 px-2 text-center " alt="Ad Product" style="width: 100%; height: 500px; border-radius: 10px;">
+            </a>
+        </div>
+    </div>
+@endif
+
+
 
 
 
   <div class="container-fluid ">
     <div class="row justify-content-center " style="height: 100%;margin:5%;">
-      <h3 class="text-center text-uppercase">Product Items</h3>
+      <h3 class="text-center text-uppercase">Products</h3>
 
       @foreach ($products as $product)
-      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5 ms-3 mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5  mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
         
       
       
@@ -141,24 +189,36 @@
 
   <div class="container mt-5">
 
-    <div class="row" style="height: 500px;">
+    <div class="" style="height: 500px;width:100%;">
       
-      <img src="Products/4.png" alt="" class="h-100 rounded">
+      <img src="Products/4.png" alt="" class="h-100" id="footerImage">
       
     </div>
   </div>
-  
 
-  
+  {{-- @php
+      $order = App\Models\CustomerOrder::all();
+  @endphp
 
+
+  <form action="{{ route('order.updateStatus', $order->id) }}" method="POST">
+    @csrf
+    <select name="status" onchange="this.form.submit()">
+        <option value="processing" {{ $order->status == 'processing' ? 'selected' : '' }}>Processing</option>
+        <option value="completed" {{ $order->status == 'completed' ? 'selected' : '' }}>Completed</option>
+        <option value="cancelled" {{ $order->status == 'cancelled' ? 'selected' : '' }}>Cancelled</option>
+    </select>
+</form>
+ 
+  
+   --}}
 
 @endsection
 
 
 
+{{-- composer require stripe/stripe-php --}}
 
-{{-- composer require stripe/stripe-php
- --}}
 
 
 

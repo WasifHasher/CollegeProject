@@ -38,34 +38,52 @@
     top: 15%;
     left: 71%;
   }
+
+  #input{
+    background: rgb(255, 255, 255);
+    box-shadow: 2px 2px 7px greenyellow;
+    color: yellow;
+  }
+  #input:focus{
+    background: greenyellow;
+    color: black;
+    font-weight: bold;
+
+  }
+  #mainheader{
+    background: rgb(41, 44, 38);
+
+    box-shadow: 2px 2px 7px greenyellow;
+    
+  }
 </style>
 
 
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg mt-2 bg-white rounded" id="mainheader">
+    <nav class="navbar navbar-expand-lg mt-2 rounded me-5" id="mainheader" >
         <div class="container-fluid">
          
           <div class="collapse navbar-collapse " id="navbarSupportedContent">
 
             <form action="/search" class="d-flex w-75" role="search"  style="margin-left:170px;">
-                <input type="text" name="query"  class="form-control me-2 p-2" placeholder="Search" id="input" aria-label="Search">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input type="text" name="query"  class="form-control me-2 p-2 " placeholder="Search" id="input" aria-label="Search">
+                <button class="btn " style="background: greenyellow;" type="submit">Search</button>
               </form>
 
           </div>
 
           
                   <div class="ms-4" style="margin-right:-160px;" >
-                    <i class="fa-solid fa-bell ps-4 fs-5" style="color:darkblue;" ><span id="spanOne">0</span></i>
-                    <a href="/ShowComments"><i class="fa-solid fa-comment ms-4 fs-5" style="color:darkblue;"><span id="spanTwo">{{ \App\Models\comment::count() }}</span></i></a>
+                    <i class="fa-solid fa-bell ps-4 fs-5" style="color:greenyellow;" ><span id="spanOne">0</span></i>
+                    <a href="/ShowComments"><i class="fa-solid fa-comment ms-4 fs-5" style="color:greenyellow;"><span id="spanTwo">{{ \App\Models\comment::count() }}</span></i></a>
                     
                   </div>
 
              <div class="col-3 mt-3 ps-5" style="margin-left:200px;" >
                
-               <p class="fs-5 ms-4"><i class="fa-duotone fa-solid fa-user pe-2" style="color:darkblue;"></i>{{Auth::user()->name}}</p>
+               <p class="fs-5 ms-4" style="color:greenyellow;"><i class="fa-duotone fa-solid fa-user pe-2" style="color:greenyellow;"></i>{{Auth::user()->name}}</p>
             </div>
 
         </div>

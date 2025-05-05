@@ -26,6 +26,7 @@
                           <th id="th">Description</th>
                           <th id="th">Image</th>
                           <th id="th">UserType</th>
+                          <th id="th">Status</th>
                           <th id="th">Edit</th>
                           <th id="th">Delete</th>
                                     
@@ -44,7 +45,10 @@
                                 </td>
                                 <td>{{ $show->user->usertype}}</td>
                                 <td>
-                                    <a href="{{ url ('editSlider/'.$show->id.'/edit')}}" class="text-decoration-none btn btn-success w-100">Edit</a>
+                                    <a href="{{ url ('status/'.$show->id.'/edit')}}" class="text-decoration-none  w-100 {{$show->status ? 'btn btn-success' : 'btn btn-danger'}}">{{$show->status ? 'Enable' : 'Disable'}}</a>
+                                </td>
+                                <td>
+                                    <a href="{{ url ('editSlider/'.$show->id.'/edit')}}" class="text-decoration-none btn btn-primary w-100">Edit</a>
                                 </td>
                                 <td>
                                     <a href="{{ url ('deleteSlider/'.$show->id.'/delete')}}" class="text-decoration-none btn btn-danger w-100">Delete</a>

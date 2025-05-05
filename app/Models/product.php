@@ -21,4 +21,13 @@ class product extends Model
         return $this->belongsTo(rating::class);
     }
 
+  
+    public function Newfunction()
+    {
+        return $this->belongsTo(category::class);
+    }
+    
+    
+
+
 }

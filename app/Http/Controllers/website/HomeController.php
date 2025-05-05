@@ -9,7 +9,10 @@ use App\Models\Cart;
 use App\Models\Rating;
 use App\Models\owner;
 use App\Models\comment;
+use App\Models\category;
+use App\Models\customerOrder;
 use Illuminate\Http\Request;
+use Illuminate\Database\Eloquent\Collection;
 
 class HomeController
 {
@@ -26,7 +29,7 @@ class HomeController
 
     public function home(){
         
-    $gets = Slider::all();
+    $gets = Slider::where('status',1)->get();
     $products = product::get()->take(12);
     $owner = owner::get();
 
@@ -45,12 +48,6 @@ class HomeController
     // return view('home',['gets' => $get],['products' =>$products],['ratingvalue' => $ratingvalue]);
     return view('home',compact('gets','products','owner'));
     }
-
-
-
-
-
-    
 
 
     public function detailFunction(string $id){
@@ -88,13 +85,41 @@ class HomeController
         return view('Contact');
     }
 
-    public function search(Request $req){
+    public function search(Request $req)
+    {
+        // Validate the input
+        $req->validate([
+            'query' => 'nullable|string|max:255',
+            'category' => 'nullable|string|max:255',
+        ]);
+        
+        $category = $req->input('category');
 
-        $search = product::where('name','like','%' .$req->input('query').'%')->get();
-
-        return view('searchItem',compact('search'));
-
+        // Search products by name or price
+        $search = Product::query()
+            ->when($req->input('query'), function ($query, $search) {
+                $query->where('name', 'like', '%' . $search . '%')
+                      ->orWhere('price', 'like', '%' . $search . '%');
+                      
+            })
+            ->when($req->input('category'), function ($query, $search) {
+                $query->where('category', 'like', '%' . $search . '%');
+         
+            })
+            ->get();
+    
+    
+        return view('searchItem', compact('search'));
     }
+
+
+    public function categoryfunction(string $id){
+        $categories = product::where('categoryname',$id)->get();
+        return view('category', compact('categories'));
+    
+    }
+
+    
 
 
     public function addtocart(Request $req){
@@ -192,7 +217,15 @@ public function saveRating(Request $req)
     return redirect()->back()->with('status', 'Your review has been added.');
 }
 
-   
+   // In your controller
+public function updateStatusField(Request $request, $id)
+{
+    $order = CustomerOrder::find($id);
+    $order->status = $request->status;
+    $order->save();
+
+    return redirect()->back()->with('success', 'Order status updated!');
+}
 
 
 

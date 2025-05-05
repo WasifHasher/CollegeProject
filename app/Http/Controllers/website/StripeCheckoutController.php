@@ -94,7 +94,10 @@ class StripeCheckoutController
  
 
     public function SaveData(Request $request){
-
+      $request->validate([
+        "Cus_email" => 'nullable',
+      ] 
+      );
 
       $userid = Auth::id();
       $product = cart::where('user_id',$userid)->get();

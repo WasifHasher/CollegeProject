@@ -30,27 +30,27 @@
 
 
     
-<div class="col-2 shadow bg-white rounded d-flex ps-4 mt-4" style="height:100px;width:250px;">
-    <p class="mt-3 fs-4 fw-bolder">Users</p>
-    <p class="mt-5 fw-bolder ps-1" style="position:relative;top:6%;right:30%;">{{ \App\Models\user::count() }}</p>
-    <a href="#" style="position:relative;top:30%;left:30%;" ><i class="fa-brands fa-youtube px-2 fs-1"></i></a>
+<div class="col-2 shadow border border-success rounded d-flex ps-4 mt-4" style="height:100px;width:250px;">
+    <p class="mt-3 fs-4 fw-bolder " style="color: greenyellow;">Users</p>
+    <p class="mt-5 fw-bolder ps-1 text-white" style="position:relative;top:6%;right:30%;">{{ \App\Models\user::count() }}</p>
+    <a href="#" style="position:relative;top:30%;left:30%;color:greenyellow;" ><i class="fa-duotone fa-solid fa-user px-2 fs-1"></i></a>
 </div>
 
-<div class="col-2 shadow bg-white rounded d-flex ps-4 mx-3 mt-4" style="height:100px;width:250px;">
-    <p class="mt-3 fs-4 fw-bolder">Amounts</p>
-    <p class="mt-5 " style="position:relative;top:6%;right:49%;">00</p>
+<div class="col-2 shadow border border-success rounded d-flex ps-4 mx-3 mt-4" style="height:100px;width:250px;">
+    <p class="mt-3 fs-4 fw-bolder " style="color: greenyellow;">Amounts</p>
+    <p class="mt-5 text-white" style="position:relative;top:6%;right:49%;">00</p>
     <a href="#" style="position:relative;top:30%;left:20%;" ><i class="fa-brands fa-youtube px-2 fs-1"></i></a>
 </div>
 
-<div class="col-2 shadow bg-white rounded d-flex ps-4 mt-4" style="height:100px;width:250px;">
-    <p class="mt-3 fs-4 fw-bolder">Orders</p>
-    <p class="mt-5 " style="position:relative;top:6%;right:35%;">{{ \App\Models\CustomerOrder::count() }}</p>
+<div class="col-2 shadow border border-success rounded d-flex ps-4 mt-4" style="height:100px;width:250px;">
+    <p class="mt-3 fs-4 fw-bolder " style="color: greenyellow;">Orders</p>
+    <p class="mt-5 text-white" style="position:relative;top:6%;right:35%;">{{ \App\Models\CustomerOrder::count() }}</p>
     <a href="#" style="position:relative;top:30%;left:22%;" ><i class="fa-brands fa-youtube px-2 fs-1"></i></a>
 </div>
 
-<div class="col-2 shadow bg-white rounded d-flex ps-4 ms-3 mt-4" style="height:100px;width:250px;">
-    <p class="mt-3 fs-4 fw-bolder">Totals</p>
-    <p class="mt-5 " style="position:relative;top:6%;right:31%;">00</p>
+<div class="col-2 shadow border border-success rounded d-flex ps-4 ms-3 mt-4" style="height:100px;width:250px;">
+    <p class="mt-3 fs-4 fw-bolder " style="color: greenyellow;">Totals</p>
+    <p class="mt-5 text-white" style="position:relative;top:6%;right:31%;">00</p>
     <a href="#" style="position:relative;top:30%;left:22%;" ><i class="fa-brands fa-youtube px-2 fs-1"></i></a>
 </div>
 
@@ -59,7 +59,7 @@
 <hr class="mt-3">
 
 
-<h2>Chart</h2>
+<h2 style="color: greenyellow;">Chart</h2>
 {{-- <p>{{ $charts}}</p> --}}
 <div id="chartContainer" style="height: 370px; width: 90%;" class=""></div>
 
@@ -89,7 +89,7 @@
      }
 
 
-     </script>
+ </script>
                
 
 

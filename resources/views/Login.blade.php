@@ -57,7 +57,10 @@
                                 @error('password')<div class="text-danger">{{ $message }}</div>@enderror
                             </div>
 
-                          
+                            <div class="mt-3 ms-2">
+                                <input type="checkbox" name="remember" id="remember" class="" style="height:18px;width:30px;" >
+                                <label for="remember" class="text-warning fs-6" style="padding-top:0px;">Remember Me</label>
+                            </div>
 
                             <button class="btn btn-danger mt-4 py-2" style="width:320px;margin-left:10px;">Login</button>
 
@@ -66,6 +69,10 @@
                             <span class="">_____________<a href="/Websiteregister"  style="color:gray;" class="text-decoration-none">Register? Sign up</a>_____________</span>
                           
                         </div>
+
+
+
+                        
                 </div>
 
                 <div class="col-5 offset-1 mt-3" style="background-color: rgba(0,0,0,0.4)">

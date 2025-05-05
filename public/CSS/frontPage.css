@@ -1,0 +1,487 @@
+.yellow{
+    background-color: yellow;
+  }
+        #aboutBox{
+        width: 290px;
+        height: 500px !important;
+
+        }
+        #aboutBox:hover{
+        width: 300px;
+        height: 520px;
+        }
+
+        #adBox{
+            margin-top: 5%;
+            margin-left: 0%;
+            z-index: 1;
+        }
+
+        #aboutDesc{
+        font-family: "Averia Sans Libre", sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        }
+
+        #about-image{
+        border-radius: 10px;
+        margin-top: 10px;
+        width: 85%;
+        height: 130px;
+        }
+
+        #about-title{
+        /* font-family: "Pacifico", serif;
+        font-weight: 400;
+        font-style: normal; */
+        width:250px;
+        padding-left:15px;
+        font-family: "Noto Serif", serif;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+        font-variation-settings:
+        "wdth" 100;
+       
+        }
+        #description {
+        font-size:28px;
+        font-family: "Playpen Sans", cursive;
+        font-optical-sizing: auto;
+        font-weight: <weight>;
+        font-style: normal;
+
+        }
+
+        #orderItems::after{
+        content : "";
+        position: absolute;
+        left:50%;
+        bottom:23%;
+        width: 14%;
+        height:5px;
+        background:orange;
+        transform: translateX(-50%);
+        border-radius:10px;
+
+        }
+
+        #searchinput{
+        z-index:1;
+        position: absolute;
+        top: 55%;
+        left:50%;
+        width: 50%;
+        transform: translateX(-50%);
+        border:none;
+        /* border:3px solid red;
+        */
+        }
+        #input{
+        padding: 10px 0px;
+        }
+        #btnSearch{
+        background: orange;
+        border-radius:0px 5px 5px 0px;
+        border:none;
+        }
+
+        #orderbtnSearch{
+        background:orange;
+        border-radius:0px 5px 5px 0px;
+        border:none;
+        }
+
+        #grayimg{
+        background:rgba(135, 132, 132, 0.7);
+        filter:contrast(30%);
+        }
+
+        #headingTwo{
+        background-image: linear-gradient(43deg, #87f610 10%, #C850C0 30%, #FFCC70 60%, rgb(10, 246, 10));
+        -webkit-background-clip: text;
+        color:transparent;
+        }
+
+        #title{
+        background-image: linear-gradient(43deg, #808cf7 10%, #daf609 30%, #fb0bdf 100%);
+        -webkit-background-clip: text;
+        color:transparent;
+        }
+
+        #checkout{
+        width: 30%;
+        }
+
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 28%;
+        z-index: 1;
+        padding: 0px;
+        margin: 0px;
+
+
+        }
+
+        .rate {
+        float: left;
+        height: 46px;
+        padding: 0 10px;
+        }
+        .rate:not(:checked) > input {
+        position:absolute;
+        top:-9999px;
+        }
+        .rate:not(:checked) > label {
+        float:right;
+        width:1em;
+        overflow:hidden;
+        white-space:nowrap;
+        cursor:pointer;
+        font-size:30px;
+        color:#ccc;
+        }
+        .rate:not(:checked) > label:before {
+        content: '★ ';
+        }
+        .rate > input:checked ~ label {
+        color: #ffc700;    
+        }
+        .rate:not(:checked) > label:hover,
+        .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;  
+        }
+        .rate > input:checked + label:hover,
+        .rate > input:checked + label:hover ~ label,
+        .rate > input:checked ~ label:hover,
+        .rate > input:checked ~ label:hover ~ label,
+        .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+        }
+
+        #Product_cart{
+        max-height: 500px;
+        width: 280px;
+        border-radius: 10px;
+
+        }
+        #Product_cart:hover {
+        max-height: 520px;
+        width: 290px;
+
+        }
+
+        #ProjectImage{
+        width: 50%;
+        height:110px;
+        border-radius:50%;
+        position: relative;
+        top: 19%;
+        text-align: center;
+
+        }
+        #desc{
+        font-family: "Averia Sans Libre", sans-serif;
+        font-size: 15px;
+        font-style: normal;
+        }
+
+        .aboutText{
+        opacity: 0;
+        font-family: "PT Serif", serif;
+        font-weight: 400;
+        font-style: italic;
+        }
+        .aboutText .animated{
+        opacity: 1;
+        }
+
+        #headingTwo{
+        opacity: 0;
+        }
+        #headingTwo .animated{
+        opacity: 1;
+        }
+        #ProfileImage{
+        opacity: 0;
+        }
+        #ProfileImage .animated{
+        opacity: 1;
+        }
+
+        #location{
+        opacity: 0;
+        }
+        #location .animated{
+        opacity: 1;
+        }
+        #peshawar{
+            opacity: 0;
+        }
+        #peshawar .animated{
+            opacity: 1;
+        }
+        #footerImage{
+        width:100%;
+        border-radius: 30px;
+
+        }
+        #contactImage{
+        width: 100%;
+        margin-top: 10px;
+        border-radius: 30px;
+        }
+
+        #contactForm{
+        margin: 0px 10px;
+        }
+        
+        #contactForm input,textarea{
+        width: 100%;
+
+    }
+        
+
+    @media screen and (max-width:992px){
+
+        #searchinput{
+
+        width: 70%;
+        /* border:2px solid red; */
+        }
+        #checkout{
+        width: 50%;
+        }
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 57%;
+
+        }
+        #contactImage{
+        width: 100%;
+        border-radius: 0px;
+        }
+        #contactForm{
+        margin: 0px 10px;
+        }
+        #contactForm input,textarea{
+        width: 100%;
+
+        }
+
+    }
+    @media screen and (max-width:767px){
+
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 77%;
+
+        }
+
+        #contactForm{
+        margin: 0px 10px;
+        }
+        #contactForm input,textarea{
+        width: 94%;
+
+        }
+        #location{
+        width: 100%;
+
+
+        }
+        #location h5{
+        font-size: 14px;
+        padding-left:10px;
+        }
+        #location p{
+        padding-left: 10px;
+        }
+        #peshawar{
+            width: 100%;
+            margin-left: 0%;
+            margin-top: 10px;
+        }
+        #peshawar h5{
+         font-size: 14px;
+         padding-left:10px;
+         }
+         #peshawar p{
+         padding-left: 10px;
+         }
+
+    }
+    @media screen and (max-width:576px){
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 36%;
+
+        }
+        #contactImage{
+        width: 100%;
+        border-radius: 0px;
+        }
+        #contactForm{
+        margin: 0px 10px;
+        }
+        #contactForm input,textarea{
+        width: 94%;
+
+        }
+        #location{
+        width: 100%;
+
+
+        }
+        #location h5{
+        font-size: 14px;
+        padding-left:10px;
+        }
+        #location p{
+        padding-left: 10px;
+        }
+
+        #peshawar{
+            width: 100%;
+            margin-left: 0%;
+            margin-top: 10px;
+        }
+        #peshawar h5{
+         font-size: 14px;
+         padding-left:10px;
+         }
+         #peshawar p{
+         padding-left: 10px;
+         }
+
+      
+    }
+     @media screen and (max-width:500px){
+
+        #searchinput{
+
+        width: 90%;
+        /* border:2px solid red; */
+        }
+        #checkout{
+        width: 100%;
+        }
+        #contactImage{
+        width: 100%;
+        border-radius: 0px;
+        }
+
+        #contactForm{
+        margin: 0px 10px;
+        }
+        #contactForm input,textarea{
+        width: 94%;
+
+        }
+
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 48%;
+
+        }
+        #contactImage{
+        width: 100%;
+        margin-top: 10px;
+        }
+        #location{
+        width: 100%;
+
+
+        }
+        #location h5{
+        font-size: 14px;
+        padding-left:10px;
+        }
+        #location p{
+        padding-left: 10px;
+        }
+        #peshawar{
+            width: 100%;
+            margin-left: 0%;
+            margin-top: 10px;
+        }
+        #peshawar h5{
+         font-size: 14px;
+         padding-left:10px;
+         }
+         #peshawar p{
+         padding-left: 10px;
+         }
+
+        #aboutBox{
+           width: 75%;
+            margin: 0px auto;
+    
+            }
+            #aboutDesc{
+                margin-top: 15px;
+                }
+                #aboutBox:hover{
+                    width: 82%;
+                    
+                    }
+ }
+
+@media screen and (max-width:360px){
+        .review{
+        position: relative;
+        bottom: 5%;
+        left: 50%;
+        }
+        #contactImage{
+        width: 100%;
+        border-radius: 0px;
+        }
+        #contactForm{
+        margin: 0px 10px;
+        }
+        #contactForm input,textarea{
+        width: 94%;
+
+        }
+        #location{
+        width: 100%;
+
+
+        }
+        #location h5{
+        font-size: 14px;
+        padding-left:10px;
+        }
+        #location p{
+        padding-left: 10px;
+        }
+        #peshawar{
+            width: 100%;
+            margin-left: 0%;
+            margin-top: 10px;
+        }
+        #peshawar h5{
+         font-size: 14px;
+         padding-left:10px;
+         }
+         #peshawar p{
+         padding-left: 10px;
+         }
+
+        #aboutBox{
+            margin: 0px auto;
+    
+            }
+}
+
+
+
+
+
+

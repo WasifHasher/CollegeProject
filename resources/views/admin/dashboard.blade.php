@@ -14,9 +14,12 @@
 
     #th{
         padding: 15px 10px;
-        
-        background: darkblue;
-        color:white;
+        background:greenyellow;
+        color:black;
+    }
+    #td{
+        background: rgb(45, 40, 49);
+        color: white;
     }
 
     #main{
@@ -25,6 +28,9 @@
     }
     #sidebar{
         height: 100%;
+    }
+    #header{
+        margin: 0px 5px 0px 0px;
     }
 
 
@@ -92,7 +98,7 @@
 
 </head>
 <body>
-        <div class="container-fluid px-0">
+        <div class="container-fluid px-0 " style="background: #16161d;">
     
             <div class="row " id="main">
                  <div class="col-2" id="sidebar">{{View::make('admin.sidebar')}}</div>
@@ -115,7 +121,8 @@
         
        
        
-                
+       
+         
        
 
      

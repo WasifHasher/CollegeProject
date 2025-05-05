@@ -1,3 +1,9 @@
+@php
+        use App\Models\category;
+
+        $brand = category::get();
+
+@endphp
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,6 +31,55 @@
             padding-left:-20px;
             
         }
+        ul li:hover{
+            background: #222226;
+        }
+
+        .hideMenu{
+            width: 96%;
+            max-height: 240px;
+            margin: 0px 0px;
+            padding: 0px 0px;
+            list-style: none;
+            display: none;
+            background: ;
+            border-radius: 6px;
+            transition:all 2s ease;
+
+            
+        }
+
+        .hideMenu li:hover{
+            background: #42414a;
+            width: 100%;
+    
+        }
+
+        .hideBrand{
+            width: 96%;
+            max-height: 240px;
+            margin: 0px 0px;
+            padding: 0px 0px;
+            list-style: none;
+            display: none;
+            background: ;
+            border-radius: 6px;
+            transition:all 2s ease;
+
+        }
+
+        .hideBrand li:hover{
+            background: #42414a;
+            width: 90%;
+    
+        }
+
+        .dropdown-toggle::after{
+            position: relative;
+            left: 90%;
+        }
+
+ 
        
     </style>
 </head>
@@ -32,7 +87,7 @@
 
     <div class="container">
         <div class="row">
-            <div class="col-12   " style="background:rgb(63, 2, 137);height:900px;" >
+            <div class="col-12   " style="background:#11101d;height:900px;" >
                 <div class="py-4 text-center fs-4">
                     <a href="#" id="dashboard" class="text-white text-decoration-none fw-bolder">Dashboard</a>
                 </div>
@@ -48,12 +103,50 @@
                         <li class="list-unstyled py-2"><a href="/mainslider" class="py-3  text-decoration-none"><span class="{{ Request::is('mainslider') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-sliders pe-3 ps-2"></i>Slider</span></a></li>
                       
                       
-                        <li class="list-unstyled py-2"><a href="/mainAbout" class="py-3  text-decoration-none"><span class="{{ Request::is('mainAbout') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-address-card pe-3 ps-2"></i>About</span></a></li>
+                       
                  
                       
-                        <li class="list-unstyled py-2"><a href="/RecievedOrder" class="py-4  text-decoration-none"><span class="{{ Request::is('RecievedOrder') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>Order({{ \App\Models\CustomerOrder::count() }})</span></a></li>
+                        <li class="list-unstyled py-2"><a href="/RecievedOrder" class="py-4  text-decoration-none"><span class="{{ Request::is('RecievedOrder') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>All Orders ({{ \App\Models\CustomerOrder::count() }})</span></a></li>
+
+
+
+                        <li class="nav-item dropdown list-unstyled py-2 text-white ">
+                            <button class="nav-link dropdown-toggle report" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-brands fa-ravelry pe-3 ps-2 "></i>Report
+                            </button>
+                            <ul class="hideMenu pt-3 mt-1 ms-3">
+                              <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none text-white ps-3" href="{{ url('/RecievedOrder')}}"><span class="{{ Request::is('RecievedOrder') ? 'active' : ''}} ps-3 pe-3 py-2 ">All Orders <span></span></a></li>
+
+                              <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none text-white ps-3 " href="{{ url('/Today')}}" ><span class="{{ Request::is('Today') ? 'active' : ''}} ps-3 pe-3 py-2 ">Today</span></a></li>
+                              <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none text-white ps-3" href="{{ url('/yesterday')}}"><span class="{{ Request::is('yesterday') ? 'active' : ''}} ps-3 pe-3 py-2 ">Yesterday </span></a></li>
+                              <li class="dropdown-item  py-1"><a class="text-decoration-none text-white ps-3" href="{{ url('/lastWeek')}}"><span class="{{ Request::is('lastWeek') ? 'active' : ''}} ps-3 pe-3 py-2 ">Last Week </span></a></li>
+                              <li class="dropdown-item  py-1"><a class="text-decoration-none text-white ps-3" href="{{ url('/CurrentMonth')}}"><span class="{{ Request::is('CurrentMonth') ? 'active' : ''}} ps-3 pe-3 py-2 ">Current Month </span></a></li>
+                              <li class="dropdown-item  py-1"><a class="text-decoration-none text-white ps-3" href="{{ url('/LastMonth')}}"><span class="{{ Request::is('LastMonth') ? 'active' : ''}} ps-3 pe-3 py-2 ">Last Month </span></a></li>
+                              <li class="dropdown-item  py-1"><a class="text-decoration-none text-white ps-3" href="{{ url('/CurrentYear')}}"><span class="{{ Request::is('CurrentYear') ? 'active' : ''}} ps-3 pe-3 py-2 ">Current Year </span></a></li>
+                            
+                             
+                            </ul>
+                          </li>
+
+                          <li class="nav-item dropdown list-unstyled py-2 text-white ">
+                            <button class="nav-link dropdown-toggle brand" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                <i class="fa-brands fa-ravelry pe-3 ps-2 "></i>Brands
+                            </button>
+                            <ul class="hideBrand pt-1 mt-1 ms-3">
+                                
+                               @foreach ($brand as $item)
+                                   <li class="p-2"><a href="{{ url('list/'.$item->id.'/item')}}" class="text-decoration-none text-white">{{ $item->category_names}}</a></li>
+                               @endforeach
+                            </ul>
+                          </li>
                       
-                        <li class="list-unstyled py-2"><a href="/owner" class="py-4  text-decoration-none"><span class="{{ Request::is('owner') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-gift pe-3 ps-2"></i>Owner_Info</span></a></li>
+
+
+                         
+
+                        <li class="list-unstyled py-2"><a href="/owner" class="py-4  text-decoration-none"><span class="{{ Request::is('owner') ? 'active' : ''}} pe-5 py-2 "><i class="fa-brands fa-weixin pe-3 ps-2"></i>Owner Info</span></a></li>
+
+                        <li class="list-unstyled py-2"><a href="/mainAbout" class="py-3  text-decoration-none"><span class="{{ Request::is('mainAbout') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-address-card pe-3 ps-2"></i>About</span></a></li>
 
                         <li class="list-unstyled py-2 "><a href="/ShowComments" class="py-4  text-decoration-none"><span class="{{ Request::is('ShowComments') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-phone pe-3 ps-2"></i>Comment({{ \App\Models\comment::count() }})</span></a></li>
 
@@ -69,8 +162,7 @@
                     </ul>
 
                     <hr>
-                   
-
+                  
                    
 
                     <div class="text-white mt-4 ms-2">
@@ -97,5 +189,52 @@
     
    
    
+     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+   
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.report');
+    const dropdownMenu = document.querySelector('.hideMenu');
+
+    // Toggle the dropdown menu when the button is clicked
+    toggleButton.addEventListener('click', (event) => {
+        dropdownMenu.style.display = dropdownMenu.style.display = 'block';
+        event.stopPropagation(); // Prevent the click from propagating to the document
+    });
+
+    // Close the dropdown menu when clicking anywhere else on the document
+    document.addEventListener('click', () => {
+        dropdownMenu.style.display = 'none';
+    });
+});
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const toggleButton = document.querySelector('.brand');
+    const dropdownMenu = document.querySelector('.hideBrand');
+
+    // Toggle the dropdown menu when the button is clicked
+    toggleButton.addEventListener('click', (event) => {
+        dropdownMenu.style.display = dropdownMenu.style.display = 'block';
+        event.stopPropagation(); // Prevent the click from propagating to the document
+    });
+
+    // Close the dropdown menu when clicking anywhere else on the document
+    document.addEventListener('click', () => {
+        dropdownMenu.style.display = 'none';
+    });
+});
+
+
+
+
+
+        
+    </script>
+
 </body>
 </html>

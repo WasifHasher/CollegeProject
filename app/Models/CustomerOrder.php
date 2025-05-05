@@ -13,4 +13,10 @@ class CustomerOrder extends Model
     public $timestamps = true;
     protected $guarded = [];
 
+    public function product(){
+        return $this->belongsTo(product::class);
+    }
+
+  
+    
 }

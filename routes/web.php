@@ -3,11 +3,15 @@
 // Below are the controller files
   use App\Http\Controllers\admin\UserController;
   use App\Http\Controllers\admin\AllDataController;
+  use App\Http\Controllers\admin\ReportController;
+
   use App\Http\Controllers\website\HomeController;
   use App\Http\Controllers\website\RegisterController;
   use App\Http\Controllers\website\CheckoutController;
   use App\Http\Controllers\website\StripeCheckoutController;
+  use App\Http\Controllers\website\administratorReportController;
   use Illuminate\Support\Facades\Route;
+
 
 // Below are the database tables 
   use App\Models\User;
@@ -21,10 +25,15 @@
   use App\Models\rating;
   use \Stripe\Stripe;
   use App\Models\owner;
+  use App\Models\category;
   //Below are the middleware
   use App\Http\Middleware\ValidUser;
   use App\Http\Middleware\OnWebsite;
 
+
+
+
+route::get('/formdata',[HomeController::class,'updateStatusField'])->name('order.updateStatus');
 
 Route::get('/',[HomeController::class,'home'])->name('Index');
 // Route::get('/',[HomeController::class,'card']);
@@ -49,6 +58,28 @@ Route::get('/deleteItem/{id}/delete',[CheckoutController::class,'deleteItem']);
 Route::view('/successpage','SuccessPage');
 
 
+
+Route::get('/verify-email/{id}', [RegisterController::class, 'verifyEmail'])->name('user.verify.email');
+
+
+
+
+
+
+// Route::middleware(['web'])->group(function () {
+ 
+//   Route::get('/googleLogin', [RegisterController::class, 'googleLogin']);
+// Route::get('/backtohome', [RegisterController::class, 'googleHandle']);
+
+// });
+Route::get('/googleLogin', [RegisterController::class, 'googleLogin']);
+Route::get('/backtohome', [RegisterController::class, 'googleHandle']);
+
+
+
+Route::get('/EditProfileData/{id}/edit', [RegisterController::class, 'edit']);
+Route::put('SaveProfileData/{id}',[RegisterController::class,'SaveProfileData']);
+
  Route::get('/CheckoutPage',[StripeCheckoutController::class,'showPaymentPage']);
  Route::post('/SaveData',[StripeCheckoutController::class,'SaveData']);
  
@@ -60,14 +91,19 @@ Route::view('/successpage','SuccessPage');
  });
 
 
- 
 Route::post('/saveRating',[HomeController::class,'saveRating']);
-
 Route::get('/detail/{id}',[HomeController::class,'detailFunction']);
+Route::get('category/{id}',[HomeController::class,'categoryfunction']);
 
+Route::get('/alldata',[administratorReportController::class,'allData']);
+Route::get('/Todays',[administratorReportController::class,'today']);
+Route::get('/lastWeeks',[administratorReportController::class,'lastWeek']);
+Route::get('/yesterdays',[administratorReportController::class,'yesterday']);
+Route::get('/CurrentMonths',[administratorReportController::class,'CurrentMonth']);
+Route::get('/LastMonths',[administratorReportController::class,'LastMonth']);
+Route::get('/CurrentYears',[administratorReportController::class,'CurrentYear']);
 
-
-
+Route::get('/brand/{id}/item',[administratorReportController::class,'brand']);
 
 
 
@@ -91,6 +127,8 @@ Route::get('/mainslider',[AllDataController::class,'showIndex'])->middleware(Val
 Route::get('/editSlider/{id}/edit',[AllDataController::class,'ShowUpdatePage']);
 Route::put('/SaveUpdateSlider/{id}/edit',[AllDataController::class,'SaveUpdateSlider']);
 Route::get('/deleteSlider/{id}/delete',[AllDataController::class,'DeleteSlider']);
+Route::get('/status/{id}/edit',[AllDataController::class,'Status']);
+
 
 
 Route::post('/SaveOrder',[AllDataController::class,'StoreOrder']);
@@ -127,3 +165,11 @@ Route::put('/Save_Update_Owner_Record/{id}/edit',[AllDataController::class,'Save
 Route::get('/owner/{id}/delete',[AllDataController::class,'Delete_Owner_Record']);
 
 
+Route::get('/Today',[ReportController::class,'today']);
+Route::get('/lastWeek',[ReportController::class,'lastWeek']);
+Route::get('/yesterday',[ReportController::class,'yesterday']);
+Route::get('/CurrentMonth',[ReportController::class,'CurrentMonth']);
+Route::get('/LastMonth',[ReportController::class,'LastMonth']);
+Route::get('/CurrentYear',[ReportController::class,'CurrentYear']);
+
+Route::get('/list/{id}/item',[ReportController::class,'brand']);

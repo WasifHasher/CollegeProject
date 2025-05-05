@@ -7,6 +7,7 @@ use App\Models\product;
 use App\Models\about;
 use App\Models\CustomerOrder;
 use App\Models\comment;
+use App\Models\category;
 use App\Models\owner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -48,6 +49,21 @@ class AllDataController
         $shows = slider::where('user_id',$userid)->with('user')->get();
         return view('admin.Slider',compact('shows'));
     }
+
+    public function Status($id){
+        $status = slider::find($id);
+
+        if($status){
+            if($status->status){
+                $status->status = 0;
+            }else{
+                $status->status = 1;
+            }
+            $status->save();
+        }
+        return back();
+    }
+
   /*****************************************************************************************************/
     public function SaveSlider(Request $req){
         $req->validate([
@@ -127,7 +143,8 @@ class AllDataController
 public function orderIndex(){
 
     $userid = Auth::id();
-    $orders = product::where('user_id',$userid)->with('user')->paginate(6);
+    $orders = product::where('user_id',$userid)->with(['user','Newfunction'])->paginate(6);
+ 
     return view('admin.OrderSave',compact('orders'));
 }
 /*****************************************************************************************************/
@@ -143,6 +160,7 @@ public function StoreOrder(Request $req){
     $order->name = $req->name;
     $order->price = $req->price;
     $order->desc = $req->desc;
+    $order->categoryname = $req->category;
     $order->user_id = $userid;
     
     if($req->hasfile('image')){
@@ -173,6 +191,7 @@ public function UpdateOrder(Request $req, string $id){
     $order->name = $req->name;
     $order->price = $req->price;
     $order->desc = $req->desc;
+    $order->categoryname = $req->category;
     if($req->hasfile('image')){
         $destination = 'Products/'.$order->image;
         if(File::exists($destination)){
@@ -314,10 +333,15 @@ public function DeleteComment(int $id){
 
 public function RecievedOrder(){
 
+    $today = "All Data";
     $user_id = Auth::id();
-    $recieved_order = CustomerOrder::get();
+    $received_orders = CustomerOrder::orderBy('id', 'desc')->get();
     $showOrder = CustomerOrder::where('user_id',$user_id)->count();
-    return view('admin.RecievedOrder',compact('recieved_order'));
+    $total = $received_orders->count();
+    $this->price = $received_orders->sum(function ($order) {
+        return $order->price * $order->qty; // Ensure 'price' and 'qty' exist in your database
+    });
+    return view('admin.RecievedOrder',compact('received_orders','total','today'))->with('price',$this->price);
 }
 
 public function deleteRecOrd(int $id){

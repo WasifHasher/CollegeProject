@@ -133,7 +133,7 @@
                 <a href="/" id="close" ><i class="fa-solid fa-xmark fs-3 text-white"></i></a>
                 
                 <div class="col-12 col-md-9 col-lg-5 col-xl-5  rounded m-3 mt-md-3 mt-lg-3 mt-xl-3" >
-                    <h3 style="margin-left:50px; width:430px" class="mt-5 fs-3 text-uppercase text-white text-left text-md-center text-lg-center text-xl-center">Registration Form</h3>
+                    <h3 style="margin-left:50px; width:430px" class="mt-5 fs-3 text-uppercase text-white text-left text-md-center text-lg-center text-xl-center">Sign Up</h3>
                         <form action="/Saveregister" method="POST" class="mt-3">
                             @csrf
 
@@ -163,6 +163,14 @@
                             <button class="btn btn-danger mt-4 py-2" >Submit</button>
 
                         </form>
+
+
+
+                        <div class="mt-3">
+                            <a href="{{ url('googleLogin')}}">
+                                <img src="Products/signinwithgoogle5.png" alt="" style="width:460px;height:50px;border-radius:0px;">
+                            </a>
+                        </div>
                 </div>
                 <div class="col-12 col-md-12 col-lg-5 col-xl-4 offset-1 mt-5 mt-md-4 mt-lg-5 mt-xl-5">
                     <img src="Products\burger_8.webp"  id="burger"  alt="">
