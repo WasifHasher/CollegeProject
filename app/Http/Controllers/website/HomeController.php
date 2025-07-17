@@ -11,6 +11,8 @@ use App\Models\owner;
 use App\Models\comment;
 use App\Models\category;
 use App\Models\customerOrder;
+use App\Models\Message;
+use App\Models\chatting;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Collection;
 
@@ -33,6 +35,18 @@ class HomeController
     $products = product::get()->take(12);
     $owner = owner::get();
 
+   
+
+    $user_id = auth()->id();
+
+    // Messages the user sent to admin
+    $user_messages = Message::where('user_id', $user_id)->get();
+
+    // Messages the admin sent to the user
+   
+
+    
+
     // $prod_id = product::select('id')->get();
 
 
@@ -46,7 +60,7 @@ class HomeController
     // }
 
     // return view('home',['gets' => $get],['products' =>$products],['ratingvalue' => $ratingvalue]);
-    return view('home',compact('gets','products','owner'));
+    return view('home',compact('gets','products','owner','user_messages'));
     }
 
 
@@ -226,6 +240,23 @@ public function updateStatusField(Request $request, $id)
 
     return redirect()->back()->with('success', 'Order status updated!');
 }
+
+
+
+public function SendMessageForOrder(Request $req){
+
+
+        $Save_message = new Message();
+
+        $Save_message->user_id = Auth::id();
+        $Save_message->messages = $req->message;
+        $Save_message->save();
+
+        return redirect()->back();
+
+}
+
+
 
 
 

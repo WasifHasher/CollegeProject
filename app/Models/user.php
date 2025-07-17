@@ -40,6 +40,18 @@ class User extends Authenticatable
     return $this->hasMany(comment::class);
    }
 
+   public function messagesToAdmin()
+    {
+        return $this->hasMany(Message::class);
+    }
+
+    public function adminMessages()
+{
+    return $this->hasMany(chatting::class);
+}
+
+
+
 
     /**
      * The attributes that are mass assignable.

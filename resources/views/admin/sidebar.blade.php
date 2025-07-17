@@ -79,17 +79,29 @@
             left: 90%;
         }
 
+
+    @media screen and (max-width:500px){
+        #sidebarSection{
+            position: absolute;
+            top: 0%;
+            left: 0%;
+            z-index: 1;
+        }
+    }
+
  
        
     </style>
 </head>
 <body>
 
-    <div class="container">
+    <div class="container" id="sidebarSection">
         <div class="row">
             <div class="col-12   " style="background:#11101d;height:900px;" >
                 <div class="py-4 text-center fs-4">
                     <a href="#" id="dashboard" class="text-white text-decoration-none fw-bolder">Dashboard</a>
+
+                    <i class="fa-solid fa-arrow-left text-white pe-3 ps-4" onclick="hideSideBarSection()"></i>
                 </div>
                 <hr class="text-white p-1">
 
@@ -145,8 +157,11 @@
                          
 
                         <li class="list-unstyled py-2"><a href="/owner" class="py-4  text-decoration-none"><span class="{{ Request::is('owner') ? 'active' : ''}} pe-5 py-2 "><i class="fa-brands fa-weixin pe-3 ps-2"></i>Owner Info</span></a></li>
+                        <li class="list-unstyled py-2"><a href="/message" class="py-4  text-decoration-none"><span class="{{ Request::is('message') ? 'active' : ''}} pe-5 py-2 "><i class="fa-brands fa-weixin pe-3 ps-2"></i>Messages</span></a></li>
+                        <li class="list-unstyled py-2"><a href="/employees" class="py-4  text-decoration-none"><span class="{{ Request::is('employees') ? 'active' : ''}} pe-5 py-2 "><i class="fa-brands fa-weixin pe-3 ps-2"></i>Employees</span></a></li>
 
                         <li class="list-unstyled py-2"><a href="/mainAbout" class="py-3  text-decoration-none"><span class="{{ Request::is('mainAbout') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-address-card pe-3 ps-2"></i>About</span></a></li>
+                        <li class="list-unstyled py-2"><a href="/Alluser" class="py-3  text-decoration-none"><span class="{{ Request::is('Alluser') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-address-card pe-3 ps-2"></i>All User</span></a></li>
 
                         <li class="list-unstyled py-2 "><a href="/ShowComments" class="py-4  text-decoration-none"><span class="{{ Request::is('ShowComments') ? 'active' : ''}} pe-5 py-2 "><i class="fa-solid fa-phone pe-3 ps-2"></i>Comment({{ \App\Models\comment::count() }})</span></a></li>
 
@@ -171,12 +186,12 @@
                     </div>
 
 
-                    <div class="mt-5 text-white fs-6" id="mainicons">
-                        <i class="fa-brands fa-youtube px-2" id="icons"></i>
-                        <i class="fa-brands fa-google" id="icons"></i>
-                        <i class="fa-brands fa-facebook px-2" id="icons"></i>
-                        <i class="fa-brands fa-twitter" id="icons"></i>
-                        <i class="fa-brands fa-instagram px-2" id="icons"></i>
+                    <div class="mt-5 text-white fs-6 ms-0 w-100 w-sm-100 w-md-100 w-lg-50" id="mainicons">
+                        <i class="fa-brands fa-youtube px-2 fs-3" id="icons"></i>
+                        <i class="fa-brands fa-google fs-3" id="icons"></i>
+                        <i class="fa-brands fa-facebook px-2 fs-3" id="icons"></i>
+                        <i class="fa-brands fa-twitter fs-3" id="icons"></i>
+                        <i class="fa-brands fa-instagram px-2 fs-3" id="icons"></i>
                     </div>
 
                 </div>
@@ -228,6 +243,12 @@ document.addEventListener('DOMContentLoaded', () => {
         dropdownMenu.style.display = 'none';
     });
 });
+
+
+    function hideSideBarSection(){
+        document.getElementById('sidebarSection').style.display = 'none';
+        document.getElementById('headerAndContent').style.width = '100%';
+    }
 
 
 

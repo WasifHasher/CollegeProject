@@ -9,7 +9,7 @@
      
       @foreach ($search as $product)
       
-      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5 ms-3 mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5 ms-3 mt-3 py-4 shadow text-center  relative" id="Product_cart" >
         
         
       

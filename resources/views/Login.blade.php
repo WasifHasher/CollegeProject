@@ -27,6 +27,24 @@
             border-bottom:1px solid white;
             color:white;
         }
+        #grayColorMargin{
+            position: absolute;
+            top: 14%;
+        }
+
+        #close{
+            position: absolute;
+            left: 87%;
+            top:6%;
+        }
+
+
+        @media screen and (max-width:675px){
+            #grayColorMargin{
+            position: absolute;
+            top: 0%;
+        }
+        }
     </style>
 </head>
 <body style="background-image: url('Products/1.png'); background-size: cover; background-repeat: no-repeat;">
@@ -36,21 +54,23 @@
             @if (session('status'))
                 <div class="alert alert-success">{{ session('status')}}</div>    
             @endif
-            <div class="row " style="background: rgba(0,0,0,0.7);">
+            <div class="row " style="background: rgba(0,0,0,0.7);p" id="grayColorMargin">
+
+                <a href="/" id="close" ><i class="fa-solid fa-xmark fs-3 text-white"></i></a>
                 
-                <div class="col-4  offset-1 shahow rounded mt-3 " style="height:550px;z-index:1;">
+                <div class="col-11 col-md-4 col-lg-4 col-xl-4 offset-1 shahow rounded mt-3 " style="height:550px;z-index:1;">
                     <h3 style="margin-left:10px;width:320px;" class="mt-5 py-2 text-white text-center fs-4">Login Form</h3>
                         <form action="/SaveLogin" method="POST" class="mt-3 z-5">
                             @csrf
 
                             
 
-                            <div class="form-group mt-4 mx-2">
+                            <div class="form-group mt-4  w-100">
                                 <input type="email" class="Form-Control  p-2 ps-3" id="emailLogin" name="email" placeholder="Email">
                                 @error('email')<div class="text-danger">{{ $message }}</div>@enderror
                             </div>
 
-                            <div class="form-group mt-3 mx-2 d-flex ">
+                            <div class="form-group mt-3  d-flex ">
                                 <input type="password" class="Form-Control w-100 p-2 ps-3" id="password" name="password" placeholder="password">
                                 
                                 <i class="fa-regular fa-eye-slash text-white fs-4" id="redeye"></i>
@@ -62,7 +82,7 @@
                                 <label for="remember" class="text-warning fs-6" style="padding-top:0px;">Remember Me</label>
                             </div>
 
-                            <button class="btn btn-danger mt-4 py-2" style="width:320px;margin-left:10px;">Login</button>
+                            <button class="btn btn-danger mt-4 py-2 " style="width:320px;">Login</button>
 
                         </form>
                         <div class="mt-3 text-center">
@@ -75,7 +95,7 @@
                         
                 </div>
 
-                <div class="col-5 offset-1 mt-3" style="background-color: rgba(0,0,0,0.4)">
+                <div class="col-12 col-md-6 col-lg-6 col-xl-6 offset-1 mt-3 ms-0" style="background-color: rgba(0,0,0,0.4)">
                     <img src="Products\burger_8.webp"  class="h-100 w-100"  alt="">
                 </div>
             </div>

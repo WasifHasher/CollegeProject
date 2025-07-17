@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="{{url('CSS/frontPage.css')}}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
+
+    <link rel="icon" href="Products/1748668290.webp" type="image/png">
    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css" />
 
@@ -16,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
 
 
-    <title>Document</title>
+    <title>Online Food Delivery system </title>
    
 </head>
 <body>
@@ -25,7 +27,7 @@
         <div class="row">
             {{ View::make('header')}}
         </div>
-        <div class="row ">
+        <div class="row">
             <div class="col-12 mx-0 px-0">@yield('mainContent')</div>
         </div>
         <div class="row mt-5">
@@ -58,6 +60,22 @@
             document.getElementById("modal").style.display = "none";
         }
 
+
+
+    function showMessageBox(){
+        document.getElementById('messages').style.display = 'block';
+        document.getElementById('plusSign').style.display = 'none';
+    }
+
+    function hideChattingBox(){
+        document.getElementById('messages').style.display = 'none';
+        document.getElementById('plusSign').style.display = 'block';
+    }
+
+    // function hideBar(){
+    //     document.getElementById('messages').style.display = 'none';
+
+    // }
 
         
 

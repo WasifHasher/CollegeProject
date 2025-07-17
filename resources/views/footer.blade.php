@@ -22,11 +22,11 @@
 <body>
     
     <div class="container mt-2" style="background:rgb(1, 34, 72);">
-        <div class="row justify-content-center  ms-lg-5 ps-xl-4" style="padding-left:10px;">
+        <div class="row justify-content-center  ms-lg-5 ps-xl-4 pt-lg-5" style="padding-left:10px;">
             <div class="col-12 col-sm-12 col-md-5 col-xl-3 ">
                 <h3 class="text-white fw-bolder mt-3" id="aboutUs">ABOUT US</h3>
                
-                <p class="text-white w-75 pt-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corporis eligendi molestias esse quidem sequi placeat culpa facilis incidunt sapiente facere voluptatem voluptatum, assumenda, aut quo magni labore consequuntur, rem ipsum.</p>
+                <p class="text-white w-75 pt-2">Wasif is the passionate and dedicated owner of an online pizza shop, known for delivering delicious, freshly baked pizzas right to customers' doorsteps. With a strong commitment to quality and customer satisfaction, he has built a trusted brand that blends traditional flavors with modern convenience.</p>
             </div>
 
             <div class="col-12 col-md-5 col-sm-12 col-xl-2 px-1 ms-3" >
@@ -37,7 +37,7 @@
                 <li><i class="fa-solid fa-chevron-right text-white" style="font-size:12px;"></i><a href="/AboutPage" class="text-white text-decoration-none unstyled  ps-3">About</a></li>
                 <li><i class="fa-solid fa-chevron-right text-white" style="font-size:12px;"></i><a href="/contactPage" class="text-white text-decoration-none unstyled  ps-3">Contact</a></li>
                 <li><i class="fa-solid fa-chevron-right text-white" style="font-size:12px;"></i><a href="/WebsiteLogin" class="text-white text-decoration-none unstyled  ps-3">Login</a></li>
-                <li><i class="fa-solid fa-chevron-right text-white" style="font-size:12px;"></i><a href="/Websiteregister" class="text-white text-decoration-none unstyled  ps-3">Login</a></li>
+                <li><i class="fa-solid fa-chevron-right text-white" style="font-size:12px;"></i><a href="/Websiteregister" class="text-white text-decoration-none unstyled  ps-3">Register</a></li>
                </ul>
             </div>
 

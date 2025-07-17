@@ -9,6 +9,10 @@ use App\Models\CustomerOrder;
 use App\Models\comment;
 use App\Models\category;
 use App\Models\owner;
+use App\Models\Message;
+use App\Models\user;
+use App\Models\chatting;
+use App\Models\employees;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 use Carbon\Carbon;
@@ -451,5 +455,130 @@ public function Delete_Owner_Record(string $id){
 
 
 
+    public function See_Messages(){
 
+        $Show_messages = Message::get();
+
+        return view('admin.MessagesPage',compact('Show_messages'));
+
+    }
+
+
+    public function Send_message_to_user($id){
+
+        $Send_message_to_user = Message::find($id);
+
+        return view('admin.Send_message_to_user',compact('Send_message_to_user'));
+    }
+
+
+    public function just_for_sender(Request $req){
+
+            $saved_to_sender_data = new chatting();
+
+            $saved_to_sender_data->sender_id = Auth::id();
+            $saved_to_sender_data->receiver_id = $req->reciever_id;
+            $saved_to_sender_data->messages = $req->message_to_user;
+            $saved_to_sender_data->save();
+
+            return redirect('/message');
+    }
+
+
+
+
+
+    public function index()
+    {
+        $employees = Employees::all();
+        return view('employee.index', compact('employees'));
+    }
+
+    // Show create form
+    public function create()
+    {
+        return view('employee.create');
+    }
+
+    // Store new employee
+    public function SaveEmployeesData(Request $request)
+    {
+        $request->validate([
+            'info' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $imagePath = null;
+
+        if($request->hasfile('image')){
+
+        $file = $request->file('image');
+        $ext = $file->getClientOriginalExtension();
+        $filename = time(). '.' .$ext;
+        $file->move('Products/',$filename);
+       $imagePath = $filename;
+
+    }
+
+        Employees::create([
+            'info' => $request->info,
+            'image' => $imagePath,
+            'user_id' => Auth::id()
+        ]);
+
+        return redirect('/employees')->with('success', 'Employee created successfully!');
+    }
+
+    // Show edit form
+    public function edit($id)
+    {
+        $employee = Employees::findOrFail($id);
+        return view('employee.edit', compact('employee'));
+    }
+
+    // Update employee
+    public function update(Request $request, $id)
+    {
+        $employee = Employees::findOrFail($id);
+
+        $request->validate([
+            'info' => 'required|string',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+        ]);
+
+        $imagePath = $employee->image;
+        if ($request->hasFile('image')) {
+            if ($employee->image) {
+                \Storage::disk('public')->delete($employee->image);
+            }
+            $imagePath = $request->file('image')->store('employees', 'public');
+        }
+
+        $employee->update([
+            'info' => $request->info,
+            'image' => $imagePath,
+        ]);
+
+        return redirect()->route('employees.index')->with('success', 'Employee updated successfully!');
+    }
+
+    // Delete employee
+    public function destroy($id)
+    {
+        $employee = Employees::findOrFail($id);
+        if ($employee->image) {
+            \Storage::disk('public')->delete($employee->image);
+        }
+        $employee->delete();
+        return redirect()->route('employees.index')->with('success', 'Employee deleted successfully!');
+    }
+
+
+
+
+    public function AllUser(){
+
+        $alluser = user::get();
+        return view('admin.AllUser',compact('alluser'));
+    }
 }

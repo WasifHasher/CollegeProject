@@ -6,6 +6,8 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Mail; 
+use App\Mail\CustomMessageMail;
 use Illuminate\Support\Facades\Hash;
 class UserController
 {
@@ -60,6 +62,20 @@ class UserController
         return view('admin.Login');
     }
 
-   
+   public function sendBulkEmail(Request $request)
+{
+    $request->validate([
+        'user_ids' => 'required|array',
+        'message' => 'required|string',
+    ]);
+
+    $users = User::whereIn('id', $request->user_ids)->get();
+
+    foreach ($users as $user) {
+        Mail::to($user->email)->send(new CustomMessageMail($request->message));
+    }
+
+    return back()->with('success', 'Emails sent successfully!');
+}
     
 }

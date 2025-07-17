@@ -31,10 +31,14 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg " style="background: rgb(39, 20, 67);">
+  
+
+
+
+    <nav class="navbar navbar-expand-lg" style="background: rgb(39, 20, 67);">
         <div class="container-fluid">
           <img src="\Products\largelogo.PNG" id="logo" alt=""><a class="navbar-brand ps-1 text-white " id="pizza" href="#"></a>
-          <button class="navbar-toggler p-0" id="togglerIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <button class="navbar-toggler p-0" onclick="hideBar()" id="togglerIcon" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="fa-solid fa-bars fs-4 p-2"></span>
             {{-- <i class="fa-solid fa-bars"></i> --}}
           </button>
@@ -56,47 +60,28 @@
               <li class="nav-item px-2 {{ Request::is('contactPage') ? 'active' : ''}}">
                 <a class="nav-link text-white text-uppercase" href="/contactPage">Contact</a>
               </li>
-            
-              {{-- <li class="nav-item dropdown list-unstyled ">
-                <button class="nav-link dropdown-toggle report text-white text-uppercase" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Report
-                </button>
-                <ul class="hideMenu pt-3 mt-1 ms-3">
 
-                  <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none  text-black ps-3" href="{{ url('/alldata')}}"><span class="{{ Request::is('alldata') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 w-100">All Orders <span></span></a></li>
-                  <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none  text-black ps-3 " href="{{ url('/Todays')}}" ><span class="{{ Request::is('Todays') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Today</span></a></li>
-                  <li class="dropdown-item  py-1 mx-0 "><a class="text-decoration-none  text-black ps-3" href="{{ url('/yesterdays')}}"><span class="{{ Request::is('yesterdays') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Yesterday </span></a></li>
-                  <li class="dropdown-item  py-1"><a class="text-decoration-none  text-black ps-3" href="{{ url('/lastWeeks')}}"><span class="{{ Request::is('lastWeeks') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Last Week </span></a></li>
-                  <li class="dropdown-item  py-1"><a class="text-decoration-none text-black ps-3" href="{{ url('/CurrentMonths')}}"><span class="{{ Request::is('CurrentMonths') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Current Month </span></a></li>
-                  <li class="dropdown-item  py-1"><a class="text-decoration-none  text-black ps-3" href="{{ url('/LastMonths')}}"><span class="{{ Request::is('LastMonths') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Last Month </span></a></li>
-                  <li class="dropdown-item  py-1"><a class="text-decoration-none  text-black ps-3" href="{{ url('/CurrentYears')}}"><span class="{{ Request::is('CurrentYears') ? 'activeSecond' : ''}} ps-3 pe-3 py-2 ">Current Year </span></a></li>
+
+
+               <div class="  d-lg-none" >
+                @if (Auth::check('name'))
+                <li class="nav-item px-2 {{ Request::is('Websitelogout') ? 'active' : ''}}">
+                  <a class="nav-link text-white" href="/Websitelogout">Logout</a>
+                </li>
+                @endif
+                {{-- <li class="nav-item px-2 mt-3 text-center position-absolute top-25">
                  
-                </ul>
-              </li> --}}
-              @php
-              use App\Models\category;
-      
-              $brand = category::get();
-      
-      @endphp
-              <li class="nav-item dropdown list-unstyled">
-                <button class="nav-link dropdown-toggle text-white brand" href="#"  role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Brands
-                </button>
-                <ul class="hideBrand pt-3 mt-1 ms-3">
-             
-                  @foreach ($brand as $item)
-                       <li class="py-1"><a href="{{ url('brand/'.$item->id.'/item')}}" class="text-decoration-none text-black ps-3 py-2">{{ $item->category_names}}</a></li>
-                   @endforeach 
-                </ul>
-              </li>
-
+                   <h3 class="text-white"> {{ Auth::check() ? Auth::user()->name : session('name') }}</h3> 
+                   
               
-           
+                </li> --}}
+                </div> 
+            
+
              
               @if (Auth::check('name'))
 
-              <div class="d-flex" style="margin-left:590px;">
+              <div class="d-flex d-xl-flex  d-none d-sm-none d-md-none d-lg-block d-xl-block" id="logoutAndCart">
               <li class="nav-item px-2 {{ Request::is('Websitelogout') ? 'active' : ''}}">
                 <a class="nav-link text-white" href="/Websitelogout">Logout</a>
               </li>
@@ -109,12 +94,12 @@
               </li>
               </div>
               @else
-              <div class="d-flex" id="loginAndsign" style="margin-left:600px;">
-              <li class="nav-item px-2 {{ Request::is('WebsiteLogin') ? 'active' : ''}}">
+              <div class="d-lg-flex " id="loginAndsign" >
+              <li class="nav-item px-2  {{ Request::is('WebsiteLogin') ? 'active' : ''}}">
                 <a class="nav-link text-white login" href="/WebsiteLogin">Log in</a>
               </li>
               
-              <li class="nav-item px-2 {{ Request::is('Websiteregister') ? 'active' : ''}}">
+              <li class="nav-item px-2  {{ Request::is('Websiteregister') ? 'active' : ''}}">
                 <a class="nav-link text-white singUp" href="/Websiteregister">Sign Up</a>
               </li>
               {{-- <a class="nav-link text-white"  href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5" ></i></a> --}}
@@ -128,25 +113,27 @@
            
           </div>
           @if (Auth::check('name') || session()->has('name'))
-          <div id="cartdiv">
-
-            <a class="nav-link text-white" id="cart" href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5 d-lg-none "></i>
-              <span class="d-lg-none" id="totalitem">{{ \App\Models\Cart::where('user_id', Auth::id())->count() }}
-              </span></a>
-          </div>
+          
               
-          <div  class="pe-1 d-none d-lg-block d-xl-flex d-inline  text-white" style="width: 170px;" id="ShowUserBox">
+          <div  class="pe-1   d-lg-block d-xl-flex d-inline  text-white  mt-md-3 mt-lg-0" style="width: 170px;" id="ShowUserBox">
 
-            <h3 id="username">
+            <h3 id="username" class="d-flex  mt-md-3 mt-lg-0">
             {{ Auth::check() ? Auth::user()->name : session('name') }}
-            <i class="fa-solid fa-angle-down fs-6 ms-2"></i>
+            <i class="fa-solid fa-angle-down fs-6 ms-2 pt-2"></i>
             </h3>
           </div>
             @endif
 
           
         </div>
-      </nav>
+   </nav>
+
+   <div id="mobileView" class="">
+
+    <a class="nav-link text-white" id="" href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5 d-lg-none "></i>
+      <span class="d-lg-none" id="Secondtotalitem">{{ \App\Models\Cart::where('user_id', Auth::id())->count() }}
+      </span></a>
+  </div>
 
       
 
@@ -214,6 +201,7 @@
    
 
   
+
 
 
 

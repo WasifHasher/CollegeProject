@@ -2,6 +2,9 @@
 @section('content')
 
 @php
+     use App\Models\user;
+
+     $users = user::get();
   
     // $totolprice = 0;
 @endphp
@@ -11,11 +14,53 @@
 <div class="alert alert-success mt-4">{{session('status')}}</div>
 @endif
     {{-- <h3>Recieved Orders</h3> --}}
-    <h3 class="text-white">{{$today}}</h3>
+    <div class="row py-2">
+
+        <div class="col-4">
+
+            <h3 class="text-white">{{$today}}</h3>
+        </div>
+        <div class="col-4">
+            
+            {{-- <form action="" method="POST">
+    @csrf
+    <table class="table">
+        @foreach ($users as $user)
+        <tr>
+            <td>
+                <input type="checkbox" name="user_ids[]" value="{{ $user->id }}">
+            </td>
+            <td>{{ $user->name }}</td>
+            <td>{{ $user->email }}</td>
+        </tr>
+        @endforeach
+    </table>
+
+    <div class="col-4">
+        <input type="text" name="message" placeholder="Enter email message" class="p-3 rounded w-75">
+        <button type="submit" class="btn btn-primary p-3 rounded">Send</button>
+    </div>
+</form> --}}
+
+        {{-- <form action="">
+        <input type="text" placeholder="Enter email messages" class="p-3 rounded w-75">
+        <button class="btn btn-primary p-3 rounded">Send</button>
+        </form> --}}
+        </div>
+        <div class="col-4 ">
+
+            <button class="btn btn-warning text-white">COPY</button>
+            <button class="btn btn-warning text-white" id="exportExcel">EXCEL</button>
+            <button class="btn btn-warning text-white" id="exportCSV">CSV</button>
+            <button class="btn btn-warning text-white" id="exportPDF">PDF</button>
+            <button class="btn btn-warning text-white"  id="printTable">PRINT</button>
+        </div>
+
+    </div>
     
     <div class="row mt-3">
 
-        <div class="col-12" >
+        <div class="col-12" id="tableData" >
             <table class="table" >
                 <tr>
                     <th id="th">Id</th>
@@ -59,6 +104,7 @@
                         <td id="td">{{ $recieved->created_at->timezone('Asia/Karachi')->format('d-m-Y h:i:s A') }}</td>
                         {{-- <td>{{ $recieved->updated_at->timezone('Asia/Karachi')->format('d-m-Y h:i:s A') }}</td> --}}
                         
+                       
                         
 
                         <td id="td">

@@ -52,6 +52,8 @@
       font-family: "Pacifico", cursive;
       font-weight: 400;
       font-style: normal;
+      
+
                     
     }
 
@@ -94,6 +96,21 @@
     padding: 0px;
 
 }
+#loginAndsign{
+ 
+  position: absolute;
+  left: 80%;
+  
+
+}
+
+#logoutAndCart{
+         margin-left: 680px;
+        
+      }
+
+
+
 
 
     @media screen and (max-width:1100px){
@@ -113,6 +130,8 @@
       left:70%;
       margin-right:20px;
     }  */
+
+   
     #totalitem{
           position: absolute;
           top:6%;
@@ -160,36 +179,126 @@
           width: 25px;
           height:25px;
     } 
+
+    #togglerIcon{
+      position: relative;
+      right: 0%;
+      top: 20%;
+      color:wheat;
+    }
+
+     
+
+    #ShowUserBox{
+        position: absolute;
+        top: 14%;
+        left: 50%;
+        margin-top: 0px;
+      }
+
+       #loginAndsign{
+      position: relative;
+      top: 90%;
+      left: 0%;
+      z-index: 1;
+    }
+
+     #mobileView{
+          position: absolute;
+          top: 30px;
+          left:86%;
+          width: 60px;
+          z-index:1;
+          /* border:2px solid red; */
+        }
+
+        #Secondtotalitem{
+          position: absolute;
+          top:-55%;
+          left:25px;
+          width: 23px;
+          height:23px;
+          background-color: orange;
+          border-radius: 50%;
+          text-align: center;
+      } 
+  #ShowUserBox{
+          position: fixed;
+          top: -1%;
+          left: 74%;
+          
+      }
+    
     }
     @media screen and (max-width:768px){
-      #togglerIcon{
+      /* #togglerIcon{
         
           color:wheat;
           margin-left:70%;
           font-size: 15px;
+        } */
+
+    #togglerIcon{
+
+          color:wheat;
+          font-size: 15px;
+          position: sticky;
+          left: 90%;
+          top: -10%;
         }
         #pizza{
-      font-family: "Pacifico", cursive;
-      font-weight: 400;
-      font-style: normal;
-      word-spacing: 3px;
-      letter-spacing: 3px;
-      font-size: 24px;
-   position: absolute;
-   text-align: left;
-    font-weight: bolder;
+          font-family: "Pacifico", cursive;
+          font-weight: 400;
+          font-style: normal;
+          word-spacing: 3px;
+          letter-spacing: 3px;
+          font-size: 24px;
+          position: absolute;
+          text-align: left;
+          font-weight: bolder;
+        } 
 
-    } 
         #username{
           font-size: 20px;
           position:absolute;
-          left: 77%;
+          left: 75%;
           top: 2%;
-          position: fixed;
-          
         }
 
+         #ShowUserBox{
+          position: static;
+          top: -1%;
+          left: 20%;
+          right: 20%;
+          
+      }
+      #logoutAndCart{
+          position: relative;
+          top: 90%;
+          left: 10%;
+          z-index: 1;
+        
+      }
+       
+ #mobileView{
+          position: absolute;
+          top: 30px;
+          left:82%;
+          width: 60px;
+          z-index:1;
+          /* border:2px solid red; */
+        }
 
+        #Secondtotalitem{
+          position: absolute;
+          top:-55%;
+          left:25px;
+          width: 23px;
+          height:23px;
+          background-color: orange;
+          border-radius: 50%;
+          text-align: center;
+      } 
 
         }
 
@@ -217,13 +326,27 @@
     } 
       #username{
         font-size: 20px;
-        left: 70%;
+        left: 50%;
         top:15px;
         position: absolute;
         
+        
       }
 
-
+        #ShowUserBox{
+        position: absolute;
+        top: 0%;
+        left: 30%;
+        margin-top: 0px;
+      }
+     
+ #logoutAndCart{
+          position: absolute;
+          top: 90%;
+          left: 0%;
+          z-index: 1;
+        
+      }
 
   }
 
@@ -233,14 +356,13 @@
         margin-left: 10px;
     }
     #togglerIcon{
-    
-        color:wheat;
-        position: absolute;
-        left:18%;
-       
-        
-       font-size: 15px;
-      }
+      position: static;
+      color:wheat;
+      left:85%;
+      margin: 4%;
+      font-size: 15px;
+      
+    }
       #logo{
         width:80px;
         height:80px;
@@ -254,10 +376,9 @@
       word-spacing: 3px;
       letter-spacing: 3px;
       font-size: 24px;
-   position: relative;
-   left: -23%;
-   
-    font-weight: bolder;
+      position: relative;
+      left: -23%;   
+      font-weight: bolder;
 
     } 
       #username{
@@ -267,10 +388,39 @@
         position: absolute;
         
       }
-      #cartdiv{
-        margin-right: 5%;
+      #mobileView{
+        position: absolute;
+        top: 4%;
+        left:74%;
+        width: 60px;
+        z-index:1;
       }
+      
+    #Secondtotalitem{
+          position: absolute;
+          top:-55%;
+          left:25px;
+          width: 23px;
+          height:23px;
+          background-color: orange;
+          border-radius: 50%;
+          text-align: center;
+    }
+
+    #ShowUserBox{
+      position: absolute;
+      top: 0%;
+      left: 30%;
+      margin-top: 20px;
+    }
      
+    #loginAndsign{
+      position: relative;
+      top: 90%;
+      left: 0%;
+      z-index: 1;
+    }
+  
   }
 
   @media screen and (max-width:400px){
@@ -292,12 +442,12 @@
       letter-spacing: 3px;
       font-size: 24px;
       position: absolute;
-    left:-5%;
-    font-weight: bolder;
+      left:-5%;
+      font-weight: bolder;
 
     }  
     #togglerIcon{
-        position: sticky;
+        position: static;
         color:wheat;
         left:85%;
         margin: 0%;
@@ -311,20 +461,45 @@
         position: absolute;
         
       }
-  #cartdiv{
-    position:fixed;
-    right: 20%;
-    margin: 0px auto;
-    /* border:2px solid red; */
-  }
+      #mobileView{
+        position: absolute;
+        top: 20px;
+        left:72%;
+        width: 60px;
+        z-index:1;
+      }
       
-    #totalitem{
+     #Secondtotalitem{
           position: absolute;
           top:-55%;
-          left:13px;
-          width: 25px;
-          height:25px;
-    } 
+          left:25px;
+          width: 23px;
+          height:23px;
+          background-color: orange;
+          border-radius: 50%;
+          text-align: center;
+      } 
+
+      #ShowUserBox{
+        position: absolute;
+        top: 0%;
+        left: 20%;
+        margin-top: 0px;
+      }
+      #loginAndsign{
+        position: relative;
+        top: 90%;
+        left: 0%;
+        z-index: 1;
+      }
+
+
+      #logoutAndCart{
+        position: absolute;
+        top: 20%;
+        left: 20%;
+      }
+  }
 
     @media screen and (max-width:360px){
 
@@ -332,10 +507,10 @@
         width:300px;
     }
         #loginAndsign{
-            border: 2px solid red;
+          
             position: relative;
             margin-top: 20px;
-            right: 70%;
+            left: 0%;
             width: 260px;
             font-weight: bolder;
         }
@@ -355,11 +530,11 @@
       word-spacing: 3px;
       letter-spacing: 3px;
       font-size: 18px;
-    margin-right:25%;
-    display: flex;
-    font-weight: bolder;
+      margin-right:25%;
+      display: flex;
+      font-weight: bolder;
 
-    }  
+      }  
         #username{
           font-size: 20px;
           left: 56%;
@@ -367,27 +542,40 @@
           position: absolute;
           
         }
-    #cartdiv{
-      position: absolute;
-      left: 75%;
-      top: 34%;
-     
-      
-    }
-    #cartdiv #cart{
-        position: absolute;
-    }
-    #cartdiv #totalitem{
+
+        #mobileView{
           position: absolute;
-          top:-55%;
-          left:13px;
-          width: 23px;
-          height:23px;
+          top: 20px;
+          left:72%;
+          width: 60px;
+          z-index:1;
+        }
+        
+      #Secondtotalitem{
+            position: absolute;
+            top:-55%;
+            left:25px;
+            width: 23px;
+            height:23px;
+            background-color: orange;
+            border-radius: 50%;
+            text-align: center;
+      }
+      #ShowUserBox{
+        position: absolute;
+        top: 0%;
+        left: 20%;
+      }
+      #logoutAndCart{
+        position: absolute;
+        top: 20%;
+        left: 20%;
+      }
+  
     }
-    }
 
 
 
 
 
-}
+

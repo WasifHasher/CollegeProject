@@ -11,18 +11,16 @@
 <body>
 
 
-    <h2 class="btn btn-primary ms-5">Welcome to Our Pizza Shop Website</h2>
+    <h2 class="btn btn-primary ms-5">Welcome to Foods Delivery System </h2>
 
     <h4 class="ms-5">Verification Email</h4>
-    <h4 class="ms-5">Name : {{ $sendEmailtoUser->name }} </h4><br>
-    <h4 class="ms-5">Email : {{ $sendEmailtoUser->email }}</h4> <br>
+    <h4 class="ms-5 mt-3 d-block">Name : {{ $sendEmailtoUser->name }} </h4>
+    <h4 class="ms-5 mt-3 d-block">Email : {{ $sendEmailtoUser->email }}</h4>
 
-
- 
-<p class="ms-5">please verify your email just click on the verify button.</p>
-<a href="{{ route('user.verify.email', $sendEmailtoUser->id) }}" class="btn btn-primary mt-4 rounded text-white ms-5">
-    Verify Email
-</a>
+    <p class="ms-5 mt-3">please verify your email just click on the verify button.</p>
+    <a href="{{ route('user.verify.email', $sendEmailtoUser->id) }}" class="btn btn-primary mt-4 rounded text-white ms-5">
+        Verify Email
+    </a>
 
 
     

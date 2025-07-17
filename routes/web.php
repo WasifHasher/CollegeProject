@@ -61,8 +61,7 @@ Route::view('/successpage','SuccessPage');
 
 Route::get('/verify-email/{id}', [RegisterController::class, 'verifyEmail'])->name('user.verify.email');
 
-
-
+Route::post('/SendMessageForOrder',[HomeController::class,'SendMessageForOrder']);
 
 
 
@@ -165,6 +164,10 @@ Route::put('/Save_Update_Owner_Record/{id}/edit',[AllDataController::class,'Save
 Route::get('/owner/{id}/delete',[AllDataController::class,'Delete_Owner_Record']);
 
 
+Route::view('/employees','admin.employeesPage')->name('/employees');
+Route::post('SaveEmployeesData',[AllDataController::class,'SaveEmployeesData']);
+
+
 Route::get('/Today',[ReportController::class,'today']);
 Route::get('/lastWeek',[ReportController::class,'lastWeek']);
 Route::get('/yesterday',[ReportController::class,'yesterday']);
@@ -173,3 +176,15 @@ Route::get('/LastMonth',[ReportController::class,'LastMonth']);
 Route::get('/CurrentYear',[ReportController::class,'CurrentYear']);
 
 Route::get('/list/{id}/item',[ReportController::class,'brand']);
+
+
+
+Route::get('/message',[AllDataController::class,'See_Messages']);
+
+Route::get('/Send_message_to_user/{id}',[AllDataController::class,'Send_message_to_user']); // here just coming send_message_page
+Route::post('/just_for_sender',[AllDataController::class,'just_for_sender']);          // and here saved the data in table
+
+
+Route::get('/Alluser',[AllDataController::class,'AllUser']);
+
+Route::post('/send-bulk-email', [UserController::class, 'sendBulkEmail'])->name('send.bulk.email');

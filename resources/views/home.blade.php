@@ -1,6 +1,22 @@
 @php
     use App\Models\category;
+    use App\Models\Message;
+    use App\Models\chatting;
+    use App\Models\employees;
+    
+  
+    $user_id = Auth::id();
+
     $category = category::get();
+    $messages_for_order = Message::where('user_id',$user_id)->get();
+
+
+    //$sender_messages = chatting::where('reciever_id',$user_id)->get();
+
+    $sender_messages = Chatting::where('receiver_id', $user_id)->get();
+
+
+
 @endphp
 @extends('frontPage')
 @section('mainContent')
@@ -29,7 +45,7 @@
     
       <div class="carousel-caption mb-5  " >
        
-      <h5 class="fs-1 fw-bolder" id="title">  <i class="fa-solid fa-layer-group pe-3 text-white" style="font-size: 4rem;"> </i>{{$item->title}}</h5>
+      <h5 class="fs-1 fw-bolder" id="title">  <i class="fa-solid pe-3 text-white" style="font-size: 4rem;"> </i>{{$item->title}}</h5>
         <p class="fs-5  pb-5 mb-5" id="description">{{$item->description}}</p>
     
       </div>
@@ -79,49 +95,104 @@
   </button>
 </div>
 
-@if(session('status'))
-<div class="alert alert-success d-flex text-center justify-content-center mt-4" data-dismiss="alert">{{session('status')}}
-  <a class="nav-link text-black ms-3"  href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5" ></i></a>
-  <span class="fw-bold fs-5" style="position:relative;left:43%;top;5%;">X</span> </div>
-@endif
+  @if(session('status'))
+  <div class="alert alert-success d-flex text-center justify-content-center mt-4" data-dismiss="alert">{{session('status')}}
+    <a class="nav-link text-black ms-3"  href="/CheckoutPage"><i class="fa-solid fa-cart-shopping fs-5" ></i></a>
+    <span class="fw-bold fs-5" style="position:relative;left:43%;top;5%;">X</span> </div>
+  @endif
 
 {{-- <h1>Welcome, {{ session('name') }}</h1>
 <h1>Welcome, {{ session('id') }}</h1> --}}
 
-@php
+ @php
     $images = ['1731664038.webp', '1731664095.webp', '1731665029.webp','1731731048.webp','1731731048.webp','1732181516.webp']; // Add more if needed
     $index = floor((time() / 600) % count($images)); // Change every 600 seconds (10 minutes)
     $currentImage = $images[$index];
 @endphp
 
-@if(Auth::check())
+ {{-- @if(Auth::check())
     <div id="adOverlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
         background-color: rgba(0, 0, 0, 0.8); z-index: 9999; display: flex; align-items: center; justify-content: center;">
         
         <div id="adBox" class="position-absolute top-25 w-sm-100 w-md-50 w-lg-50 w-xl-50  h-75" style="padding: 10px; border-radius: 10px;">
-            {{-- Close button --}}
-            <button onclick="document.getElementById('adOverlay').style.display='none'" 
+         
+             <button onclick="document.getElementById('adOverlay').style.display='none'" 
                 style="position: absolute; top: 10px; right: 15px; color: white; background: transparent; border: none; font-size: 28px; cursor: pointer;">&times;
             </button>
 
-            {{-- Rotating Product Image --}}
-            <a href="/product-page-link">
+           
+             <a href="/product-page-link">
                 <img src="{{ asset('Products/' . $currentImage) }}" class="w-100 px-2 text-center " alt="Ad Product" style="width: 100%; height: 500px; border-radius: 10px;">
             </a>
         </div>
     </div>
-@endif
+@endif   --}}
+
+
+   
+
+    <div class="z-1 mx-2" id="messages">
+      <h4 class="p-3  text-center text-white fs-bold bg-success rounded ">Message for Placed Order. <span><i class="fa-solid fa-xmark fs-3 ms-5" onclick="hideChattingBox()"></i></span></h4>
+
+      <div class="" id="scroll">
+
+
+          
+             @php
+                $user_count = count($messages_for_order);
+                $admin_count = count($sender_messages);
+                $max = max($user_count, $admin_count);
+            @endphp
+
+<div class="w-100 clearfix" data-bs-spy="scroll">
+    @for ($i = 0; $i < $max; $i++)
+        {{-- User message --}}
+        @if (isset($messages_for_order[$i]))
+            <div class="text-start float-start ms-2  w-75">
+                <p class="d-block px-3 py-2 w-100 " style="background-color:#f1f1f1; border-radius:10px;">
+                    {{ $messages_for_order[$i]->messages }}
+                </p>
+            </div>
+        @endif
+
+        {{-- Admin message --}}
+        @if (isset($sender_messages[$i]))
+            <div class="text-end  float-end me-2">
+                <p class="d-inline-block px-3 mx-2 py-2 text-white" style="background-color:#3b0aeb; border-radius:10px;">
+                    {{ $sender_messages[$i]->messages }}
+                </p>
+            </div>
+        @endif
+
+        {{-- Clear float after each pair --}}
+        <div class="w-100 clearfix"></div>
+    @endfor
+</div>
 
 
 
+
+     
+
+
+          </div>
+          <form action="/SendMessageForOrder" method="POST" id="send_message_to_user" >
+            @csrf
+            <div class="ms-lg-3 ms-1 w-md-100 w-lg-100 w-xl-100 ">
+              <input type="textarea" name='message' class="p-2 w-lg-100" placeholder="Messages" id="message-input" style="border-radius: 20px;">
+              <button class="" style="border: none;background:none;"><i class="fa-solid fa-paper-plane text-primary ms-1 ms-lg-2 fs-2"></i></button>
+            </div>
+          </form>
+    </div>
+    <div><i class="fa-solid fa-plus" id="plusSign" onclick="showMessageBox()"></i></div>
 
 
   <div class="container-fluid ">
-    <div class="row justify-content-center " style="height: 100%;margin:5%;">
+    <div class="row justify-content-center " style="height: 100%;margin:3%;">
       <h3 class="text-center text-uppercase">Products</h3>
 
       @foreach ($products as $product)
-      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5  mt-3 py-4 shadow text-center bg-white relative" id="Product_cart" >
+      <div class="col-8 col-sm-5 col-md-3 col-lg-3 col-xl-3  mt-xl-5  mt-3 py-4 shadow text-center relative" id="Product_cart" >
         
       
       
@@ -166,11 +237,13 @@
   </div>
 
 
-
+   
+  
+  
  
 
 
-  <div class="container mt-5">
+  <div class="container mt-5 pt-5 ">
     <div class="row">
 
       @foreach ($owner as $item)
@@ -181,13 +254,50 @@
         <p class="mt-3  fs-4 aboutText" >{{$item->info}}</p>
       </div>
       <div class="col-12 col-md-6 col-lg-6 col-xl-6">
-        <img src="Products/{{($item->image)}}" class="rounded" id="ProfileImage" width="100%" height="350px;">
+        <img src="Products/{{($item->image)}}" class="rounded" id="ProfileImage" width="100%" height="450px;">
       </div>
       @endforeach
     </div>
   </div>
 
-  <div class="container mt-5">
+
+  @php
+
+
+    $employees = employees::get();
+
+  @endphp
+
+
+
+
+  <div class="container mt-5 pt-5">
+    <h2 class="text-center">Team Members</h2>
+    <div class="row pt-5 mt-3">
+      @foreach ($employees as $employee)
+          
+      
+      <div class="col-3">
+
+        <div class="card" style="width: 18rem;">
+         <img src="{{ asset('Products/' . $employee->image) }}" alt="Employee Image" style="width:100%; height:310px;">
+
+          <div class="card-body">
+            <p class="card-text">{{$employee->info}}.</p>
+          </div>
+        </div>
+
+      </div>
+      @endforeach
+    </div>
+  </div>
+
+
+    
+
+
+
+  <div class="container mt-5 pt-5">
 
     <div class="" style="height: 500px;width:100%;">
       
